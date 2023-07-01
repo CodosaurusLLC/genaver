@@ -1,0 +1,63 @@
+<html>
+  <body>
+    Filtering on matching human-lang:
+    <div data-human-lang="english">'ello, guv'na!</div>
+    <div data-human-lang="french">Bonjour, mon ami!</div>
+    <div data-human-lang="spanish">¡Hola, amigo!</div>
+    <div data-human-lang="portuguese">Olá, amigo!</div>
+    <div data-human-lang="japanese">Konnichi-wa, tomodachi!</div>
+
+    <br/>
+
+    Filtering on NOT matching human-lang:
+    <div data-not-human-lang="english">Ceci n'est PAS en englais!</div>
+    <div data-not-human-lang="french">Isto não é em francês!</div>
+    <div data-not-human-lang="spanish">This is NOT in Spanish!</div>
+    <div data-not-human-lang="english">
+      <div data-human-lang="japanese">Ohayo gozaimasu!</div>
+      <div data-human-lang="portuguese">Bom dia!</div>
+    </div>
+
+    <br/>
+
+    Filtering on prog-lang:
+    <div data-prog-lang="ruby">puts "Hello, world!"</div>
+    <div data-prog-lang="c">printf("Hello, %s!\n", "world");</div>
+    <div data-prog-lang="javascript">console.log('Hello, world!');</div>
+
+    <br/>
+
+    Filtering on min/max time:
+    <div data-max-time="19">We have 19 mins or less</div>
+    <div data-min-time="20">We have 20 mins or more</div>
+    <div data-max-time="29">We have 29 mins or less</div>
+    <div data-min-time="30">We have 30 mins or more</div>
+    <div data-max-time="39">We have 39 mins or less</div>
+    <div data-min-time="40">We have 40 mins or more</div>
+
+    <br/>
+
+    Vars:<br/>
+    city: <span data-gv-var="city"></span><br/>
+    conf: <span data-gv-var="conf"></span><br/>
+    year: <span data-gv-var="year"></span><br/>
+    All together:
+    <span data-gv-var="conf"></span>-Conf
+    <span data-gv-var="city"></span>
+    <span data-gv-var="year"></span><br/>
+
+    <script src="genaver.js"></script>
+    <script type="text/javascript">
+      generate_version([
+        'human-lang     =  japanese',
+        'not-human-lang =  english',
+        'prog-lang      =  ruby',
+        'min-time       <= 30',
+        'max-time       >= 30',
+        'var-city       =  Kyoto',
+        'var-conf       =  Something',
+        'var-year       =  2022'
+      ]);
+    </script>
+  </body>
+</html>
