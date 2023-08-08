@@ -35,7 +35,7 @@ function generate_version(args=[]) {
   }
 }
 
-const SPEC_REGEX = /^([a-zA-Z0-9-]+)\s*([<=>!]+)\s*(.+)$/;
+const SPEC_REGEX = /^([a-zA-Z0-9-_]+)\s*([<=>!]+)\s*(.+)$/;
 
 function parse_specs(args, so_far) {
   for (var arg of args) {
