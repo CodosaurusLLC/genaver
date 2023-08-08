@@ -1,0 +1,120 @@
+:root {
+  --caption-height: 4%;  /* only need 3% if 3x4 rather than 9x16 */
+  --main-height: calc(100% - var(--caption-height));
+}
+
+.reveal,
+.reveal a,
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6
+{
+  color: #ded;
+  font-family: "Trebuchet MS", "Helvetica Neue", sans-serif;
+  text-transform: none;  /* else it gets uppercased, yuck! */
+  margin-bottom: 0.05em;
+  margin-top: 0.05em;
+}
+
+.reveal .center {
+  left:      50%;
+  position:  absolute;
+  transform: translateX(-50%);
+}
+
+.reveal span.slide-caption {
+  bottom: 0;
+  font-size: 0.2em;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  /* display: none; */
+}
+
+.reveal table th, .reveal table td {
+  border: 0;
+  padding: 0 .25em;
+}
+
+.reveal table th {
+  border-bottom: 2px solid white;
+}
+
+.reveal table th.numeric, .reveal table td.numeric {
+  text-align: right;
+}
+
+section.present::before {
+  content: "@davearonson";
+  font-size: 0.25em;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+section.present::after {
+  content: "www.Codosaur.us";
+  font-size: 0.25em;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.reveal section {
+  background: #112;
+}
+
+.reveal section.present {
+  /* border: 1px solid red; */ /* for debugging */
+  height: 100%;
+}
+
+/* for debugging */
+.reveal .bordered { border: 1px solid red }
+
+.reveal .vctring {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reveal .all  { height:      var(--main-height); }
+.reveal .most { height: calc(var(--main-height) * 0.75); }
+.reveal .half { height: calc(var(--main-height) * 0.50); }
+.reveal .qtr  { height: calc(var(--main-height) * 0.25); }
+
+.reveal img {
+  border-radius: 1em;
+  margin: 0;
+}
+
+.reveal img.code {
+  border-radius: 0;
+}
+
+.reveal section.present .main-text {
+  max-height: var(--main-height);
+  max-width: 100%;
+  position: absolute;
+  top: calc(var(--main-height) / 2);
+  left: 50%;
+  transform: translate(-50%,-50%);  /* of the div size! */
+  font-size: 1.5em;
+  width: 100%;
+}
+
+table.all-right td, table.all-right th {
+  padding: 0 .4em;
+  text-align: right;
+}
+
+table.centered td, table.centered th {
+  text-align: center;
+}
+
+table.all-right td.text, table.all-right th.text {
+  text-align: left;
+}
