@@ -375,9 +375,90 @@
 
             <br><br>
 
-            E agora, vamos fazer uma pequena demonstra&ccedil;&atilde;o.
+            Mas, como ela funciona?
           </aside>
         </section>
+
+
+        <section>
+          <div class="main-text" style="">
+          </div>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <!-- MORE SCRIPT TO BE TURNED INTO SLIDES:
+
+          Inicialmente, ela aceita s&oacute; um argumento opcional passado ao JavaScript,
+          que &eacute; uma lista de filtros, cada na forma de um string.
+
+          Cada filtro tem uma chave, uma compara&ccedil;&atilde;o, e um valor,
+          opcionalmente com espa&ccedil;os entre eles.
+
+          As chaves representam escolhas como
+          linguagem humana, linguagem de programa&ccedil;&atilde;o,
+          tempo minimo ou maximo de qual uma coisa precisa,
+          ou qualquer outra coisa que querem escolher.
+
+          As compara&ccedil;&otilde;es sāo igual, n&atilde;o igual,
+          menos, menos ou igual, mais, e mais ou igual.&nbsp;
+          As compara&ccedil;&otilde;es de ordem s&atilde;o usadas
+          s&oacute; para os valores num&eacute;ricos,
+          e igual ou n&atilde;o-igual s&atilde;o para
+          os n&uacute;meros e os strings.&nbsp;
+          Por isso, voc&ecirc;s podem usar um filtro como
+          "linguagem-humana = portugu&ecirc;s"
+          (ou specificamente portugu&ecirc;s-brasileiro)
+          mas n&atilde;o "linguagem-humana > portugu&ecirc;s".
+
+          Genaver analisa os filtros, para extrair os peda&ccedil;os,
+          e coloc&aacute;-los num dicion&aacute;rio.&nbsp;
+          Nesse dicion&aacute;rio, as chaves s&atilde;o as dos filtros,
+          e cada valor &eacute; um listo,
+          com a compara&ccedil;&atilde;o, e o valor, do filtro.&nbsp;
+          Por examplo, a lista dos filtros
+          ["ling-humana = portugu&ecirc;s", "tempo-min <= 30"]
+          se torna ao dicion&aacute;rio
+          { "ling-humana": [ "=", "portugu&ecirc;s" ],
+          "tempo-min": [ "<=", 30 ]}.&nbsp;
+          (Notam que o trinta &eacute; um numero, sem aspas.)
+
+          Depois de analisar o argumento no JavaScript, caso exista,
+          ela faz exatamente a mesma coisa com os argumentos dado na URL.&nbsp;
+          Por exemplo, se formos para "talk.html?ling-humana=english",
+          agora o "portugu&ecirc;s" no dicion&aacute;rio
+          &eacute; substitu&iacute;do por "english".
+          As outras entradas no dicion&aacute;rio,
+          como o limite de tempo de trinta minutos, continuam as mesmas.&nbsp;
+          Ent&atilde;o, os argumentos no JavaScript
+          podem ser usados como padr&otilde;es.
+
+          Agora que Genaver tem todos os argumentos,
+          ela os aplica ao documento.&nbsp;
+          Para a compara&ccedil;&atilde;o de "n&atilde;o igual",
+          &eacute; muito simples —
+          ela usa querySelectorAll para encontrar todos os elementos
+          com esse valor para esse atributo, e os esconde.&nbsp;
+          Para "igual", &eacute; quase assim,
+          ela encontra todos os elementos com esse atributo,
+          com qualquer valor,
+          itera atrav&eacute;s deles,
+          e esconde os que n&atilde;o tem esse valor.&nbsp;
+          Para as outras compara&ccedil;&otilde;es,
+          &eacute; um pouco mais complexo que isso,
+          porque precisa converter os atributos de strings em n&uacute;meros,
+          e verificar seus rela&ccedil;&otilde;es ao argumento,
+          mas ainda &eacute; bastante simples.&nbsp;
+          Por exemplo, talvez queremos mostrar os elementos onde
+          o atributo "data-foobar" &eacute; mais que 42.&nbsp;
+          Genaver encontra os elementos com o atributo "data-foobar",
+          e para cada um, ela converte o valor do atributo,
+          de um string para um n&uacute;mero,
+          e se n&atilde;o &eacute; mais que 42, ela esconde o elemento.
+
+          E agora, vamos fazer uma pequena demonstra&ccedil;&atilde;o.
+                 
+        -->        
 
         <section>
           <div class="main-text code" style="font-size: 2em">
@@ -560,90 +641,6 @@
             e ainda vemos s&oacute; a longa!&nbsp;
           </aside>
         </section>
-
-        <section>
-          <div class="main-text" style="">
-          </div>
-          <aside class="notes">
-          </aside>
-        </section>
-
-        <!-- MORE SCRIPT TO BE TURNED INTO SLIDES:
-
-          PUT THIS BEFORE THE DEMO!
-
-          Agora, vamos dar uma olhada para como ela funciona.
-
-          Inicialmente, ela aceita s&oacute; um argumento opcional passado ao JavaScript,
-          que &eacute; uma lista de filtros, cada na forma de um string.
-
-          Cada filtro tem uma chave, uma compara&ccedil;&atilde;o, e um valor,
-          opcionalmente com espa&ccedil;os entre eles.
-
-          As chaves representam escolhas como
-          linguagem humana, linguagem de programa&ccedil;&atilde;o,
-          tempo minimo ou maximo de qual uma coisa precisa,
-          ou qualquer outra coisa que querem escolher.
-
-          As compara&ccedil;&otilde;es sāo igual, n&atilde;o igual,
-          menos, menos ou igual, mais, e mais ou igual.&nbsp;
-          As compara&ccedil;&otilde;es de ordem s&atilde;o usadas
-          s&oacute; para os valores num&eacute;ricos,
-          e igual ou n&atilde;o-igual s&atilde;o para
-          os n&uacute;meros e os strings.&nbsp;
-          Por isso, voc&ecirc;s podem usar um filtro como
-          "linguagem-humana = portugu&ecirc;s"
-          (ou specificamente portugu&ecirc;s-brasileiro)
-          mas n&atilde;o "linguagem-humana > portugu&ecirc;s".
-
-          Genaver analisa os filtros, para extrair os peda&ccedil;os,
-          e coloc&aacute;-los num dicion&aacute;rio.&nbsp;
-          Nesse dicion&aacute;rio, as chaves s&atilde;o as dos filtros,
-          e cada valor &eacute; outro pequeno dicion&aacute;rio,
-          com as chaves "op" e "val",
-          e os valores da compara&ccedil;&atilde;o e do valor do filtro.&nbsp;
-          Por examplo, a lista dos filtros
-          ["ling-humana = portugu&ecirc;s", "tempo-min <= 30"]
-          se torna ao dicion&aacute;rio
-          { "ling-humana": { "op": "=", "val": "portugu&ecirc;s" },
-          "tempo-min": { "op": "<=", "val": 30 }}.
-          (Notam que o trinta &eacute; um numero, sem aspas.)
-
-          Depois de analisar o argumento no JavaScript, caso exista,
-          ela faz exatamente a mesma coisa com os argumentos dado na URL.&nbsp;
-          Por exemplo, se formos para "talk.html?ling-humana=english",
-          agora o "portugu&ecirc;s" no dicion&aacute;rio
-          &eacute; substitu&iacute;do por "english".
-          As outras entradas no dicion&aacute;rio,
-          como o limite de tempo de trinta minutos, continuam as mesmas.&nbsp;
-          Ent&atilde;o, os argumentos no JavaScript
-          podem ser usados como padr&otilde;es.
-
-          Agora que Genaver tem todos os argumentos,
-          ela os aplica ao documento.&nbsp;
-          Para a compara&ccedil;&atilde;o de "n&atilde;o igual",
-          &eacute; muito simples —
-          ela usa querySelectorAll para encontrar todos os elementos
-          com esse valor para esse atributo, e os esconde.&nbsp;
-          Para "igual", &eacute; quase assim,
-          ela encontra todos os elementos com esse atributo,
-          com qualquer valor,
-          itera atrav&eacute;s deles,
-          e esconde os que n&atilde;o tem esse valor.&nbsp;
-          Para as outras compara&ccedil;&otilde;es,
-          &eacute; um pouco mais complexo que isso,
-          porque precisa converter os atributos de strings em n&uacute;meros,
-          e verificar seus rela&ccedil;&otilde;es ao argumento,
-          mas ainda &eacute; bastante simples.&nbsp;
-          Por exemplo, talvez queremos mostrar os elementos onde
-          o atributo "data-foobar" &eacute; mais que 42.&nbsp;
-          Genaver encontra os elementos com o atributo "data-foobar",
-          e para cada um, ela converte o valor do atributo,
-          de um string para um n&uacute;mero,
-          e se n&atilde;o &eacute; mais que 42, ela esconde o elemento.
-
-        -->
-
       </div>
     </div>
 

@@ -19,18 +19,20 @@ function generate_version(args=[]) {
   specs = parse_specs(fix_url_params(url_params), specs);
 
   for (const key of Object.keys(specs)) {
-    spec = specs[key];
+    var op, val;
+    [op, val] = specs[key];
     var data_key = `data-${key}`;
-    switch(spec.op) {
+    switch(op) {
       case '=':
-        if (key.slice(0, 4) == 'var-') sub_vars(key, spec.val);
-        else filter_str_same(data_key, spec.val);
+        if (key.slice(0, 4) == 'var-') sub_vars(key, val);
+        else filter_str_same(data_key, val);
         break;
       case '!=': filter_str_different(data_key, spec.val, false); break;
-      case '<':  filter_num_lt(data_key, spec.val); break;
-      case '<=': filter_num_le(data_key, spec.val); break;
-      case '>':  filter_num_gt(data_key, spec.val); break;
-      case '>=': filter_num_ge(data_key, spec.val); break;
+      case '<':  filter_num_lt(data_key, val); break;
+      case '<=': filter_num_le(data_key, val); break;
+      case '>':  filter_num_gt(data_key, val); break;
+      case '>=': filter_num_ge(data_key, val); break;
+      default: alert(`Unknown comparison '${op}'!`); break;
     }
   }
 }
@@ -41,7 +43,7 @@ function parse_specs(args, so_far) {
   for (var arg of args) {
     var key, op, val;
     [key, op, val] = SPEC_REGEX.exec(arg).slice(1, 4);
-    so_far[key] = {op: op, val: val};
+    so_far[key] = [op, val];
   }
   return so_far;
 }
