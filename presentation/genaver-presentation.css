@@ -1,5 +1,5 @@
 :root {
-  --caption-height: 4%;  /* only need 3% if 3x4 rather than 9x16 */
+  --caption-height: 1%;
   --main-height: calc(100% - var(--caption-height));
 }
 
@@ -65,6 +65,7 @@ section.present::after {
 
 .reveal section {
   background: #112;
+  padding-top: 1%;
 }
 
 .reveal section.present {
@@ -95,15 +96,19 @@ section.present::after {
   border-radius: 0;
 }
 
+/* WHY THE HELL CAN'T I PUT THESE ON A CODE *TAG*?!?!?! */
+.reveal section.present .code {
+  line-height: 1em;
+  text-align: left;
+}
+
 .reveal section.present .main-text {
-  max-height: var(--main-height);
-  max-width: 100%;
   position: absolute;
   top: calc(var(--main-height) / 2);
   left: 50%;
   transform: translate(-50%,-50%);  /* of the div size! */
-  font-size: 1.5em;
-  width: 100%;
+  white-space: nowrap;
+  width: fit-content;
 }
 
 table.all-right td, table.all-right th {

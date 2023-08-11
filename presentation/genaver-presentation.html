@@ -60,7 +60,8 @@
         </section>
 
         <section>
-          <s class="main-text" style="font-size: 5em">867-5309</s>
+          <img src="images/nope-scope.png">
+          <div class="main-text" style="font-size: 4em; z-index: -1">867-5309</div>
           <aside class="notes">
             . . . Jennifer, nem . . .
           </aside>
@@ -75,7 +76,7 @@
         </section>
 
         <section>
-          <img src="images/jenever.jpg" height="100%">
+          <img src="images/jenever.jpg">
           <span class="slide-caption">Image: https://commons.wikimedia.org/wiki/File:King_%26_Barnes_Jenever_vaten.JPG</span>
           <aside class="notes">
             . . . a bebida, em verdade pronunciada je-NEE-ver.&nbsp;
@@ -84,10 +85,10 @@
         </section>
 
         <section>
-          <div class="main-text" style="font-size: 3em">
-            GENerate<br>
+          <div class="main-text" style="font-size: 3em; text-align: left; width: fit-content">
+            GEN<span style="color: #888">erate</span><br>
             A<br>
-            VERsion
+            VER<span style="color: #888">sion</span>
           </div>
           <aside class="notes">
             . . .
@@ -195,23 +196,25 @@
         </section>
 
         <section>
-          <code><pre>
-&lt;dave-special-tag linguagem-humana="portugu&ecirc;s"&gt;
-  Isto &eacute; em portugu&ecirc;s
-&lt;/dave-special-tag&gt;
-
-&lt;dave-special-tag linguagem-humana="igpay-atinlay"&gt;
-  Isthay isay inay igpay atinlay
-&lt;/dave-special-tag&gt;
-
-&lt;dave-special-tag linguagem-de-programa&ccedil;&atilde;o="elixir"&gt;
-  IO.puts("Ol&aacute, mundo!")
-&lt;/dave-special-tag&gt;
-
-&lt;dave-special-tag linguagem-de-programa&ccedil;&atilde;o="c"&gt;
-  printf("Ol&aacute, mundo!\n")
-&lt;/dave-special-tag&gt;
-          </pre></code>
+          <div class="main-text code" style="font-size: 0.7em">
+            <code>
+              &lt;dave-special-tag linguagem-humana="portugu&ecirc;s"&gt;<br>
+              &nbsp;&nbsp;Isto &eacute; em portugu&ecirc;s<br>
+              &lt;/dave-special-tag&gt;<br>
+              <br>
+              &lt;dave-special-tag linguagem-humana="igpay-atinlay"&gt;<br>
+              &nbsp;&nbsp;Isthay isay inay igpay atinlay<br>
+              &lt;/dave-special-tag&gt;<br>
+              <br>
+              &lt;dave-special-tag linguagem-de-programa&ccedil;&atilde;o="elixir"&gt;<br>
+              &nbsp;&nbsp;IO.puts("Ol&aacute, mundo!")<br>
+              &lt;/dave-special-tag&gt;<br>
+              <br>
+              &lt;dave-special-tag linguagem-de-programa&ccedil;&atilde;o="c"&gt;<br>
+              &nbsp;&nbsp;printf("Ol&aacute, mundo!\n")<br>
+              &lt;/dave-special-tag&gt;<br>
+            </code>
+          </div>
           <aside class="notes">
             . . . marcar o HTML com tags especiais,
             e escrever um programa para
@@ -221,13 +224,16 @@
         </section>
 
         <section>
-          <div class="qtr"></div>
-          <div class="half">
-            Com argumentos de escolher portugu&ecirc;s e Elixir:
-            <code style="font-size: 2em"><pre>
-  Isto &eacute; em portugu&ecirc;s
-  IO.puts("Ol&aacute, mundo!")
-            </pre></code>
+          <div class="main-text" style="font-size: 1.5em">
+            Com argumentos de escolher<br>
+            portugu&ecirc;s e Elixir:<br>
+
+            <div style="text-align: left; margin: 0.5em">
+              <code>
+                Isto &eacute; em portugu&ecirc;s<br>
+                IO.puts("Ol&aacute, mundo!")
+              </code>
+            </div>
           </div>
           <aside class="notes">
             . . . fazer um novo arquivo de acordo com meus desejos.&nbsp;
@@ -239,21 +245,21 @@
         </section>
 
         <section>
-          <div class="half">
-            <code style="font-size: 1.5em"><pre>
-#define ENGLISH   1
-#define FRANCAIS  2
-#define PORTUGU&Ecirc;S 3
-#define WANTED_LANGUAGE PORTUGU&Ecirc;S
-/* ... */
-#if WANTED_LANGUAGE == ENGLISH
-  Hello, world!
-#elif WANTED_LANGUAGE == FRANCAIS
-  Bonjour, monde!
-#elif WANTED_LANGUAGE == PORTUGU&Ecirc;S
-  Ol&aacute;, mundo!
-#endif
-            </pre></code>
+          <div class="main-text code" style="font-size: 0.9em">
+            <code>
+              #define ENGLISH   1<br>
+              #define FRANCAIS  2<br>
+              #define PORTUGU&Ecirc;S 3<br>
+              #define WANTED_LANGUAGE PORTUGU&Ecirc;S<br>
+              /* ... */<br>
+              #if WANTED_LANGUAGE == ENGLISH<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;Hello, world!<br>
+              #elif WANTED_LANGUAGE == FRANCAIS<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;Bonjour, monde!<br>
+              #elif WANTED_LANGUAGE == PORTUGU&Ecirc;S<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;Ol&aacute;, mundo!<br>
+              #endif<br>
+            </code>
             <aside class="notes">
               . . . pr&eacute;-processador da linguagem C,
               uma gambiarra verdadeira,
@@ -263,17 +269,14 @@
         </section>
 
         <section>
-          <div class="qtr"></div>
-          <div class="half">
-            <code style="font-size: 1.5em">
-              <pre>
-  #include "introduction"
-  #include "problem_description"
-  #include "proposed_solution"
-  #include "tech_description"
-  #include "pros_and_cons"
-  #include "conclusion"
-              </pre>
+          <div class="main-text code" style="font-size: 1.2em">
+            <code>
+              #include "introduction"<br>
+              #include "problem_description"<br>
+              #include "proposed_solution"<br>
+              #include "tech_description"<br>
+              #include "pros_and_cons"<br>
+              #include "conclusion"
             </code>
           </div>
           <aside class="notes">
@@ -321,47 +324,255 @@
 
             Ent&atilde;o, eu fiz um pequeno Proof of Concept,
             ou em portugu&ecirc;s, Prova de Conceito.&nbsp;
+
+            <br><br>
+
+            J&aacute; comecei escrever
+            minhas novas apresenta&ccedil;&otilde;es em . . .
           </aside>
         </section>
 
         <section>
+          <img src="images/revealjs.jpg">
+          <aside class="notes">
+            . . .  RevealJS,
+            e ia fazer uma, sobre Algor&iacute;tmos Gen&eacute;ticos,
+            nas semanas que vem.&nbsp;
+            Eu ia faz&ecirc;-la
+            uma vez em vinte e cinco minutos
+            com a introdu&ccedil;ao em espanhol,
+            uma vez em trinta e cinco minutos
+            com a introdu&ccedil;ao em holand&ecirc;s,
+            e uma vez em cinquenta minutos com
+            a introdu&ccedil;ao em noruegu&ecirc;s.&nbsp;
+            Eu j&aacute; tive as tr&ecirc;s vers&otilde;es separadas,
+            e as combinei,
+            numa "vers&atilde;o prim&aacute;ria"
+            para testar minha gambiarra.&nbsp;
+            E . . .
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/thumb-up-emoji-clipart-lg.png">
+          <span class="slide-caption">Image: https://creazilla.com/nodes/60301-thumb-up-emoji-clipart</span>
+          <aside class="notes">
+            . . . ela deu certo!&nbsp;
+            Eu pudesse passar argumentos diferentes ao JavaScript,
+            para escolher a introdu&ccedil;&atilde;o,
+            e esconder peda&ccedil;os que precisam tempo demais,
+            &agrave;s vezes substituindo peda&ccedil;os menores.
+
+            <br><br>
+
+            N&atilde;o ainda confiei nela, suficiente para us&aacute;-la nas confer&ecirc;ncias,
+            mas continuei a adicionar recursos,
+            como passar os argumentos na URL,
+            substituindo pelos valores passado direto ao JavaScript.
+            Ent&atilde;o, pudesse usar exatamente o mesmo HTML para
+            muitas vers&otilde;es de uma apresenta&ccedil;&atilde;o,
+            e configur&aacute;-lo com argumentos na URL.
+
+            <br><br>
+
+            E agora, vamos fazer uma pequena demonstra&ccedil;&atilde;o.
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 2em">
+            generate_version([]);
+          </div>
+          <aside class="notes">
+            Aqui est&aacute; a chamada para Genaver,
+            no fundo desta apresenta&ccedil;&atilde;o.&nbsp;
+            Veja que n&atilde;o tem nenhum filtros.&nbsp;
+            E . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code">
+            <code>
+              &lt;p data-ling="en"&gt;<br>
+              &nbsp;&nbsp;This is in English.<br>
+              &lt;/p&gt;<br>
+              &lt;p data-ling="fr"&gt;<br>
+              &nbsp;&nbsp;Ceci est en fran&ccedil;ais.<br>
+              &lt;/p&gt;<br>
+              &lt;p data-ling="pt"&gt;<br>
+              &nbsp;&nbsp;Isto &eacute; em portugu&ecirc;s.<br>
+              &lt;/p&gt;<br>
+            </code>
+          </div>
+          <aside class="notes">
+            E aqui est&aacute; o c&oacute;digo da pr&oacute;xima desliza.&nbsp;
+            Se irmos al&iacute;,
+            o que voc&ecirc;s pensam que aparecer&aacute;?&nbsp;
+            E quem pensa "nada"?&nbsp;
+            Levante uma m&atilde;o ou fa&ccedil; barulho.&nbsp;
+            E quem pensa "tudo"?&nbsp;
+            De novo, m&atilde;o ou barulho.&nbsp;
+            Algumas outras respostas?&nbsp;
+            . . .
+            Vamos-l&aacute; e ver!
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 2em">
+            <p data-ling="en">This is in English.</p>
+            <p data-ling="fr">Ceci est en fran&ccedil;ais.</p>
+            <p data-ling="pt">Isto &eacute; em portugu&ecirc;s.</p>
+          </div>
+          <aside class="notes">
+            Vemos tudo, porque Genaver n&atilde;o funciona por
+            preservar os peda&ccedil;os bons,
+            mas <i>esconder</i> os <i>ruins</i>.
+
+            <br><br>
+
+            Vamos dar uma olhada para a URL.&nbsp;
+            N&atilde;o tem nenhum argumentos l&aacute;,
+            nem na chamada, ent&atilde;o,
+            Genaver n&atilde;o sabe o que esconder,
+            e n&atilde;o esconde nada.
+
+            <br><br>
+
+            Mas agora, vamos mudar a URL,
+            por adicionar o argumento ling=en.&nbsp;
+            Se agora n&oacute;s recarregarmos a p&aacute;gina,
+            . . .
+            agora vemos a vers&atilde;o em ingles.&nbsp;
+            E podemos fazer a mesma coisa com franc&ecirc;s
+            e portugu&ecirc;s.&nbsp;
+            Podemos fazer a mesma coisa com
+            linguagens de programa&ccedil;&atilde;o,
+            ou qualquer outra coisa,
+            por simplemente usar uma outra chave.&nbsp;
+            Por exemplo . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code">
+            <code>
+              &lt;p data-ling-prog="c"&gt;<br>
+              &nbsp;&nbsp;printf("Blah.\n")<br>
+              &lt;/p&gt;<br>
+              &lt;p data-ling-prog="elixir"&gt;<br>
+              &nbsp;&nbsp;IO.puts("Blah.")<br>
+              &lt;/p&gt;<br>
+              &lt;p data-ling-prog="ruby"&gt;<br>
+              &nbsp;&nbsp;puts "Blah."<br>
+              &lt;/p&gt;<br>
+            </code>
+          </div>
+          <aside class="notes">
+            E aqui est&aacute; o c&oacute;digo
+            da <i>pr&oacute;xima</i> desliza.&nbsp;
+            Vamos-l&aacute; e ver o que aparecer&aacute;!
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 2em">
+            <p data-ling-prog="c">printf("Blah.\n")</p>
+            <p data-ling-prog="elixir">IO.puts("Blah.")</p>
+            <p data-ling-prog="ruby">puts "Blah."</p>
+          </div>
+          <aside class="notes">
+            De novo, vemos tudo, porque
+            de novo, Genaver n&atilde;o sabe o que esconder.&nbsp;
+            Mas vamos mudar a URL,
+            por adicionar o argumento ling-prog=c,
+            e recarregamos a p&aacute;gina.&nbsp;
+            Agora vemos s&oacute; a vers&atilde;o em C.&nbsp;
+            E podemos fazer a mesma coisa com Elixir e Ruby.
+
+            <br><br>
+
+            Mas, que tal a dura&ccedil;&atilde;o?
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code">
+            <code>
+            </code>
+          </div>
+          <aside class="notes">
+            De novo, aqui est&aacute; o c&oacute;digo
+            da pr&oacute;xima desliza.&nbsp;
+            Vamos-l&aacute; e ver!
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 2em">
+            <p data-tempo-max="19">Explica&ccedil;&atilde;o curta.</p>
+            <p data-tempo-min="20" data-tempo-max="29">Explica&ccedil;&atilde;o m&eacute;dia.</p>
+            <p data-tempo-min="30">Explica&ccedil;&atilde;o longa.</p>
+          </div>
+          <aside class="notes">
+            Como antes, vemos tudo, porque
+            Genaver n&atilde;o sabe o que esconder.&nbsp;
+            Mas vamos mudar a URL,
+            por adicionar <i>dois</i> argumentos,
+            os tempos m&iacute;nimo e m&aacute;ximo,
+            geralmente os mesmos n&uacute;meros,
+            mas com compara&ccedil;&otilde;es diferentes!&nbsp;
+            Vamos supor que temos dez minutos para falar.&nbsp;
+            Queremos as explica&ccedil;&otilde;es que
+            n&atilde;o precisam mais que isso,
+            ent&atilde;o dizemos "tempo-min<=10".&nbsp;
+            N&atilde;o ainda precisamos o "tempo-max".&nbsp;
+            . . .
+            Vamos recarregar a p&aacute;gina,
+            e vemos s&oacute; a explica&ccedil;&atilde;o curta.&nbsp;
+            Se mudarmos a dezenove minutos,
+            . . .
+            vemos ainda a explica&ccedil;&atilde;o curta,
+            mas se mudarmos a vinte minutos,
+            . . .
+            vemos a curta <i>e</i> a m&eacute;dia!&nbsp;
+            Isso &eacute; porque
+            agora precisamos o "tempo-max",
+            para esconder a curta.&nbsp;
+            Ent&atilde;o, adicionamos isso,
+            recarregamos a p&aacute;gina,
+            . . .
+            e agora vemos s&oacute;
+            a explica&ccedil;&atilde;o m&eacute;dia!&nbsp;
+            Se mudarmos a vinte e nove minutos,
+            e recarregarmos a p&aacute;gina,
+            . . .
+            vemos ainda a m&eacute;dia,
+            mas se mudarmos a trinta minutos,
+            e recarregarmos a p&aacute;gina,
+            . . .
+            agora vemos s&oacute; a longa!&nbsp;
+            E, porque n&atilde;o temos explica&ccedil;&otilde;es mais longas,
+            podemos remover o tempo-min, assim,
+            e recarregar a p&aacute;gina,
+            . . .
+            e ainda vemos s&oacute; a longa!&nbsp;
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="">
+          </div>
           <aside class="notes">
           </aside>
         </section>
 
         <!-- MORE SCRIPT TO BE TURNED INTO SLIDES:
 
-          J&aacute; comecei escrever minhas novas apresenta&ccedil;&otilde;es em RevealJS,
-          e ia fazer uma, sobre Algor&iacute;tmos Gen&eacute;ticos,
-          nas semanas que vem.&nbsp;
-          Eu ia faz&ecirc;-la
-          uma vez em vinte e cinco minutos com a introdu&ccedil;ao em espanhol,
-          uma vez em trinta e cinco minutos com a introdu&ccedil;ao em holand&ecirc;s,
-          e uma vez em cinquenta minutos com a introdu&ccedil;ao em noruegu&ecirc;s.&nbsp;
-          Eu j&aacute; tive as tr&ecirc;s vers&otilde;es separadas, e as combinei,
-          numa "vers&atilde;o prim&aacute;ria" para testar minha gambiarra.
+          PUT THIS BEFORE THE DEMO!
 
-          E . . . ela deu certo!  Eu pudesse passar argumentos diferentes ao JavaScript,
-          para escolher a introdu&ccedil;&atilde;o,
-          e esconder peda&ccedil;os que precisam tempo demais,
-          &agrave;s vezes substituindo peda&ccedil;os menores.
-
-          N&atilde;o ainda confiei nela, suficiente para us&aacute;-la nas confer&ecirc;ncias,
-          mas continuei a adicionar recursos,
-          como passar os argumentos na URL,
-          substituindo pelos valores passado direto ao JavaScript.
-
-          Ent&atilde;o, pudesse usar exatamente o mesmo HTML para
-          muitas vers&otilde;es de uma apresenta&ccedil;&atilde;o,
-          e configur&aacute;-lo com argumentos na URL.&nbsp;
-          Por exemplo, no primeiro deslize da minha apresenta&ccedil;&atilde;o aqui hoje,
-          h&aacute; estas duas URLs.&nbsp;
-          Elas s&atilde;o diferentes s&oacute; nos argumentos,
-          mas um d&aacute; esta apresenta&ccedil;&atilde;o com os "speaker notes" em portugu&ecirc;s brasileiro,
-          como voces escutam agora,
-          e a outra d&aacute;-los em ingl&ecirc;s.
-
-          E agora, vamos dar uma olhada para como ela funciona.
+          Agora, vamos dar uma olhada para como ela funciona.
 
           Inicialmente, ela aceita s&oacute; um argumento opcional passado ao JavaScript,
           que &eacute; uma lista de filtros, cada na forma de um string.
@@ -376,19 +587,23 @@
 
           As compara&ccedil;&otilde;es sāo igual, n&atilde;o igual,
           menos, menos ou igual, mais, e mais ou igual.&nbsp;
-          As compara&ccedil;&otilde;es de ordem s&atilde;o usadas s&oacute; para os valores num&eacute;ricos,
-          e igual ou n&atilde;o-igual s&atilde;o para os n&uacute;meros e os strings.&nbsp;
+          As compara&ccedil;&otilde;es de ordem s&atilde;o usadas
+          s&oacute; para os valores num&eacute;ricos,
+          e igual ou n&atilde;o-igual s&atilde;o para
+          os n&uacute;meros e os strings.&nbsp;
           Por isso, voc&ecirc;s podem usar um filtro como
-          "linguagem-humana = portugu&ecirc;s" (ou specificamente portugu&ecirc;s-brasileiro)
+          "linguagem-humana = portugu&ecirc;s"
+          (ou specificamente portugu&ecirc;s-brasileiro)
           mas n&atilde;o "linguagem-humana > portugu&ecirc;s".
 
           Genaver analisa os filtros, para extrair os peda&ccedil;os,
           e coloc&aacute;-los num dicion&aacute;rio.&nbsp;
           Nesse dicion&aacute;rio, as chaves s&atilde;o as dos filtros,
-          e cada valore &eacute; outro pequeno dicion&aacute;rio,
+          e cada valor &eacute; outro pequeno dicion&aacute;rio,
           com as chaves "op" e "val",
           e os valores da compara&ccedil;&atilde;o e do valor do filtro.&nbsp;
-          Por examplo, a lista dos filtros ["ling-humana = portugu&ecirc;s", "tempo-min <= 30"]
+          Por examplo, a lista dos filtros
+          ["ling-humana = portugu&ecirc;s", "tempo-min <= 30"]
           se torna ao dicion&aacute;rio
           { "ling-humana": { "op": "=", "val": "portugu&ecirc;s" },
           "tempo-min": { "op": "<=", "val": 30 }}.
@@ -397,104 +612,65 @@
           Depois de analisar o argumento no JavaScript, caso exista,
           ela faz exatamente a mesma coisa com os argumentos dado na URL.&nbsp;
           Por exemplo, se formos para "talk.html?ling-humana=english",
-          agora o "portugu&ecirc;s" no dicion&aacute;rio &eacute; substitu&iacute;do por "english".
-          As outras entradas no dicion&aacute;rio, como o limite de tempo de trinta minutos, continuam as mesmas.&nbsp;
-          Ent&atilde;o, os argumentos no JavaScript podem ser usados como padr&otilde;es.
+          agora o "portugu&ecirc;s" no dicion&aacute;rio
+          &eacute; substitu&iacute;do por "english".
+          As outras entradas no dicion&aacute;rio,
+          como o limite de tempo de trinta minutos, continuam as mesmas.&nbsp;
+          Ent&atilde;o, os argumentos no JavaScript
+          podem ser usados como padr&otilde;es.
 
-          Agora que Genaver tem todos os argumentos, ela os aplica ao documento.&nbsp;
-          Para a compara&ccedil;&atilde;o de "n&atilde;o igual", &eacute; muito simples —
+          Agora que Genaver tem todos os argumentos,
+          ela os aplica ao documento.&nbsp;
+          Para a compara&ccedil;&atilde;o de "n&atilde;o igual",
+          &eacute; muito simples —
           ela usa querySelectorAll para encontrar todos os elementos
-          com esse valor para esse atributo, e escond&ecirc;-los.&nbsp;
+          com esse valor para esse atributo, e os esconde.&nbsp;
           Para "igual", &eacute; quase assim,
-          ela encontra todos os elementos com esse atributo, com qualquer valor,
-          itera atrav&eacute;s deles, e escond&ecirc;-los que n&atilde;o tem esse valor.&nbsp;
-          Para as outras compara&ccedil;&otilde;es, &eacute; um pouco mais complexo que isso,
+          ela encontra todos os elementos com esse atributo,
+          com qualquer valor,
+          itera atrav&eacute;s deles,
+          e esconde os que n&atilde;o tem esse valor.&nbsp;
+          Para as outras compara&ccedil;&otilde;es,
+          &eacute; um pouco mais complexo que isso,
           porque precisa converter os atributos de strings em n&uacute;meros,
-          e verificar seus rela&ccedil;&otilde;es ao argumento, mas ainda &eacute; bastante simples.&nbsp;
+          e verificar seus rela&ccedil;&otilde;es ao argumento,
+          mas ainda &eacute; bastante simples.&nbsp;
           Por exemplo, talvez queremos mostrar os elementos onde
           o atributo "data-foobar" &eacute; mais que 42.&nbsp;
           Genaver encontra os elementos com o atributo "data-foobar",
-          e para cada um, ela converte o valor do atributo, de um string para um n&uacute;mero,
+          e para cada um, ela converte o valor do atributo,
+          de um string para um n&uacute;mero,
           e se n&atilde;o &eacute; mais que 42, ela esconde o elemento.
-
-          E agora, vamos ver uma pequena demonstra&ccedil;&atilde;o.&nbsp;
-          Aqui est&aacute; o c&oacute;digo da chamada a Genaver, desta apresenta&ccedil;&atilde;o.&nbsp;
-          Podemos ver que a linguagem escolhida &eacute; portugu&ecirc;s.&nbsp;
-          Isso faz sentido porque hoje &eacute; a primeira vez
-          que eu fa&ccedil;o esta apresenta&ccedil;&atilde;o.
-
-          E aqui est&aacute; o c&oacute;digo da pr&oacute;xima desliza.&nbsp;
-          Podemos ver que h&aacute; uma frase sem linguagem marcado,
-          e vers&otilde;es de uma outra frase, em portugu&ecirc;s, ingl&ecirc;s, e franc&ecirc;s.
-
-          Vamos l&aacute;, e dar uma olhada para a URL.&nbsp;
-          N&atilde;o tem argumentos l&aacute;, ent&atilde;o, vemos a vers&atilde;o em portugu&ecirc;s,
-          como escolhido direto no JavaScript.&nbsp;
-          Mas agora, vamos mudar a URL,
-          para adicionar o argumento gv-linguagem=ingles.&nbsp;
-          Precisamos o "gv" porque n&atilde;o queremos conflitar com arguments
-          de algum outro programa.&nbsp;
-          Se n&oacute;s recarregarmos a pagina,
-          agora vemos a vers&atilde;o em ingles.&nbsp;
-          E podemos fazer a mesma coisa com franc&ecirc;s,
-          e tamb&eacute;m com linguagens de programa&ccedil;&atilde;o,
-          separadamente da linguagem humana,
-          por usar um outro atributo, como ling-prog ou qualquer.
-
-          E aqui est&aacute; o c&oacute;digo da pr&oacute;xima desliza.&nbsp;
-          Podemos ver que h&aacute; uma frase sem tempo marcado,
-          uma outra, um pouco prolixa,
-          marcada com o m&iacute;nimo tempo de trinta minutos,
-          que significa "inclui isto s&oacute; se tenho trinta minutos ou mais",
-          e uma outra, que diz a mesma coisa mas mais concisa,
-          marcada com o m&aacute;ximo tempo de vinte-nove minutos,
-          que significa "inclui isto s&oacute; se tenho vinte-nove minutos ou menos".
-          Com isso par, precisamos tomar um pouco de cuidado.&nbsp;
-          Vamos-l&aacute; para ver porque.
-
-          Se n&atilde;o h&aacute; filtros de tempo, vemos ambos as vers&otilde;es!&nbsp;
-          N&atilde;o &eacute; bom, haver duas frases que significam a mesma coisa.&nbsp;
-          Mas agora, vamos adicionar alguns argumentos no URL,
-          min-tempo menos ou igual trinta, e max-tempo mais ou igual trinta,
-          e recarregar a pagina.&nbsp;
-          Isso &eacute; o que eu faria se eu tivesse trinta minutos para falar.&nbsp;
-          Ent&atilde;o, vemos s&oacute; os elementos
-          sem min-tempo ou com min-tempo menos ou igual de trinta,
-          e sem max-tempo ou com max-tempo mais ou igual de trinta,
-          que nos d&aacute; s&oacute; a vers&atilde;o prolixa.&nbsp;
-          Mas se mudarmos os argumentos para dizer que tenho s&oacute; vinte minutos,
-          e recarregarmos a pagina,
-          agora vemos s&oacute; a vers&atilde;o concisa.
 
         -->
 
-          </div>
       </div>
+    </div>
 
-      <script src="reveal/dist/reveal.js"></script>
-      <script src="reveal/plugin/notes/notes.js"></script>
-      <script src="reveal/plugin/markdown/markdown.js"></script>
-      <script src="reveal/plugin/highlight/highlight.js"></script>
-      <script src="../genaver.js"></script>
-      <script>
-        // More info about initialization & config:
-        // - https://revealjs.com/initialization/
-        // - https://revealjs.com/config/
-        const width = 960;
-        Reveal.initialize({
-          controls: false,
-          hash: true,
-          history: true,
-          transition: "none",
-          transitionSpeed: "fast",
-          width: width,
-          height: width * 9 / 16,
+    <script src="reveal/dist/reveal.js"></script>
+    <script src="reveal/plugin/notes/notes.js"></script>
+    <script src="reveal/plugin/markdown/markdown.js"></script>
+    <script src="reveal/plugin/highlight/highlight.js"></script>
+    <script src="../genaver.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      const width = 960;
+      Reveal.initialize({
+        controls: false,
+        hash: true,
+        history: true,
+        transition: "none",
+        transitionSpeed: "fast",
+        width: width,
+        height: width * 9 / 16,
 
-          // Learn about plugins: https://revealjs.com/plugins/
-          plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-        });
-        // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
-        // generate_version(['ling-hum = portugu&ecirc;s']);  // linguagem humana
-      </script>
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
+      generate_version([]);
+    </script>
   </body>
 </html>
