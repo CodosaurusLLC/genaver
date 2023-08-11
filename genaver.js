@@ -27,17 +27,18 @@ function generate_version(args=[]) {
         if (key.slice(0, 4) == 'var-') sub_vars(key, val);
         else filter_str_same(data_key, val);
         break;
-      case '!=': filter_str_different(data_key, spec.val, false); break;
-      case '<':  filter_num_lt(data_key, val); break;
-      case '<=': filter_num_le(data_key, val); break;
-      case '>':  filter_num_gt(data_key, val); break;
-      case '>=': filter_num_ge(data_key, val); break;
+      case '!=': filter_str_diff(data_key, spec.val, false); break;
+      case '@':  filter_num_at(data_key, val); break;
+      case '<':  filter_num(data_key, val, is_lt); break;
+      case '<=': filter_num(data_key, val, is_le); break;
+      case '>':  filter_num(data_key, val, is_gt); break;
+      case '>=': filter_num(data_key, val, is_ge); break;
       default: alert(`Unknown comparison '${op}'!`); break;
     }
   }
 }
 
-const SPEC_REGEX = /^([a-zA-Z0-9-_]+)\s*([<=>!]+)\s*(.+)$/;
+const SPEC_REGEX = /^([a-zA-Z0-9-_]+)\s*([<=>!@]+)\s*(.+)$/;
 
 function parse_specs(args, so_far) {
   for (var arg of args) {
@@ -59,52 +60,44 @@ function fix_url_params(url_params) {
   return fixed_params;
 }
 
-function filter_num_ge(key, value) {
-  filter_num(key, value,
-             (x, limit) => parseFloat(elt.getAttribute(key)) >= limit);
+function filter_num_at(key, value) {
+  filter_num(`${key}-min`, value, is_le);
+  filter_num(`${key}-max`, value, is_ge);
 }
 
-function filter_num_gt(key, value) {
-  filter_num(key, value,
-             (x, limit) => parseFloat(elt.getAttribute(key)) > limit);
-}
-
-function filter_num_le(key, value) {
-  filter_num(key, value,
-             (x, limit) => parseFloat(elt.getAttribute(key)) <= limit);
-}
-
-function filter_num_lt(key, value) {
-  filter_num(key, value,
-             (x, limit) => parseFloat(elt.getAttribute(key)) > limit);
-}
+function is_ge(x, limit) { return x >= limit }
+function is_gt(x, limit) { return x >  limit }
+function is_le(x, limit) { return x <= limit }
+function is_lt(x, limit) { return x <  limit }
 
 function filter_num(key, value, comp_fn) {
-  const limit = parseFloat(value);
-  const all  = document.querySelectorAll(`[${key}]`);
+  const limit = parseInt(value);
+  const all = document.querySelectorAll(`[${key}]`);
   if (all.length === 0) alert(`WARNING: No elements have attribute ${key}!`);
   for (elt of all) {
-    if (! comp_fn(parseFloat(elt.getAttribute(key)), limit)) {
+    if (! comp_fn(parseInt(elt.getAttribute(key)), limit)) {
       elt.style.display = 'none';
     }
   }
 }
 
-function filter_str_different(key, value) {
+function filter_str_diff(key, value) {
   const all = document.querySelectorAll(`[${key}="${value}"]`);
   if (all.length === 0) {
     alert(`WARNING: No elements have value ${value} for attribute ${key}!`);
-  } else {
-    for (elt of all) elt.style.display = 'none';
+    return;
   }
+  for (elt of all) elt.style.display = 'none';
 }
 
 function filter_str_same(key, value) {
   const all = document.querySelectorAll(`[${key}]`);
   if (all.length === 0) {
     alert(`WARNING: No elements have attribute ${key}!`);
-  } else {
-    for (e of all) if (e.getAttribute(key) != value) e.style.display = 'none';
+    return;
+  }
+  for (elt of all) {
+    if (elt.getAttribute(key) != value) elt.style.display = 'none';
   }
 }
 
