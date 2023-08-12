@@ -56,7 +56,8 @@
             O nome Genaver n&atilde;o &eacute; uma refer&ecirc;ncia &agrave;
             nome de menina . . .
           </aside>
-          <!-- NOTE TO SELF: Timeslot is 45 mins; aim for 35-40 of content. -->
+          <!-- NOTE TO SELF: Timeslot is 45 mins; aim for 35-40 of content.;
+          currently have about 21, perfect for half-hour.  -->
         </section>
 
         <section>
@@ -71,7 +72,7 @@
           <img src="images/guinevere-and-lancelot.jpg" height="100%">
           <span class="slide-caption">Image: https://commons.wikimedia.org/wiki/File:Emil_Teschendorff_-_Queen_Guinevere_bidding_farewell_to_Sir_Lancelot.jpg</span>
           <aside class="notes">
-            . . . Guinevere, nem . . .
+            . . . &agrave; Rainha Guinevere, nem . . .
           </aside>
         </section>
 
@@ -79,8 +80,10 @@
           <img src="images/jenever.jpg">
           <span class="slide-caption">Image: https://commons.wikimedia.org/wiki/File:King_%26_Barnes_Jenever_vaten.JPG</span>
           <aside class="notes">
-            . . . a bebida, em verdade pronunciada je-NEE-ver.&nbsp;
-            Genaver &eacute; uma abrevia&ccedil;&atilde;o para uma frase em ingl&ecirc;s,
+            . . . a bebida, em verdade pronunciada je-NEE-ver,
+            como descobri h&aacute; alguns meses.&nbsp;
+            Genaver &eacute; uma abrevia&ccedil;&atilde;o
+            para uma frase em ingl&ecirc;s,
           </aside>
         </section>
 
@@ -379,87 +382,537 @@
           </aside>
         </section>
 
-
         <section>
-          <div class="main-text" style="">
+          <div class="main-text" style="font-size: 0.24em">
+            <code>
+              <pre>
+function generate_version(args=[]) {
+  const url_params = Array.from(new URLSearchParams(window.location.search));
+  var   specs;
+
+  specs = parse_specs(args, {});
+  specs = parse_specs(fix_url_params(url_params), specs);
+
+  for (const key of Object.keys(specs)) {
+    var op, val;
+    [op, val] = specs[key];
+    var data_key = `data-${key}`;
+    switch(op) {
+      case '=':  filter_str_same(data_key, val); break;
+      case '!=': filter_str_diff(data_key, spec.val, false); break;
+      case '@':  filter_num_at(data_key, val); break;
+      case '&lt;':  filter_num(data_key, val, is_lt); break;
+      case '&lt;=': filter_num(data_key, val, is_le); break;
+      case '&gt;':  filter_num(data_key, val, is_gt); break;
+      case '&gt;=': filter_num(data_key, val, is_ge); break;
+    }
+  }
+}
+
+const SPEC_REGEX = /^([a-zA-Z0-9-_]+)\s*([<=>!@]+)\s*(.+)$/;
+
+function parse_specs(args, so_far) {
+  for (var arg of args) {
+    var key, op, val;
+    [key, op, val] = SPEC_REGEX.exec(arg).slice(1, 4);
+    so_far[key] = [op, val];
+  }
+  return so_far;
+}
+
+function fix_url_params(url_params) {
+  const fixed_params = [];
+  for (var [key, val] of url_params) {
+    fixed_params.push(val ? `${key}=${val}` : key);
+  }
+  return fixed_params;
+}
+
+function filter_num_at(key, value) {
+  filter_num(`${key}-min`, value, is_le);
+  filter_num(`${key}-max`, value, is_ge);
+}
+
+function is_ge(x, limit) { return x >= limit }
+function is_gt(x, limit) { return x >  limit }
+function is_le(x, limit) { return x <= limit }
+function is_lt(x, limit) { return x <  limit }
+
+function filter_num(key, value, comp_fn) {
+  const limit = parseInt(value);
+  const all  = document.querySelectorAll(`[${key}]`);
+  for (elt of all) {
+    if (! comp_fn(parseInt(elt.getAttribute(key)), limit)) {
+      elt.style.display = 'none';
+    }
+  }
+}
+
+function filter_str_diff(key, value) {
+  const all =
+    document.querySelectorAll(`[${key}="${value}"]`);
+  for (elt of all) elt.style.display = 'none';
+}
+
+function filter_str_same(key, value) {
+  const all = document.querySelectorAll(`[${key}]`);
+  for (elt of all) {
+    if (elt.getAttribute(key) != value) {
+      elt.style.display = 'none';
+    }
+  }
+}</pre>
+            </code>
           </div>
           <aside class="notes">
+            Aqui es&aacute; <i>o c&oacute;digo enteiro</i> de Genaver.&nbsp;
+            N&atilde;o, n&atilde;o espero que
+            voc&ecirc;s leiam tudo isso!&nbsp;
+            Vamos ver pe&ccedil;a por pe&ccedil;a.&nbsp;
+            Inicialmente, . . .
           </aside>
         </section>
 
-        <!-- MORE SCRIPT TO BE TURNED INTO SLIDES:
+        <section>
+          <div class="main-text code" style="font-size: 0.8em">
+            <code>
+              <pre>
+function generate_version(args=[]) {<span style="color: gray">
+  const url_params = Array.from(new URLSearchParams(window.location.search));
+  </span>var   specs;
 
-          Inicialmente, ela aceita s&oacute; um argumento opcional passado ao JavaScript,
-          que &eacute; uma lista de filtros, cada na forma de um string.
+  specs = parse_specs(args, {});<span style="color: gray">
+  specs = parse_specs(fix_url_params(url_params), specs);
 
-          Cada filtro tem uma chave, uma compara&ccedil;&atilde;o, e um valor,
-          opcionalmente com espa&ccedil;os entre eles.
+  for (const key of Object.keys(specs)) {
+    var op, val;
+    [op, val] = specs[key];
+    var data_key = `data-${key}`;
+    switch(op) {
+      case '=':  filter_str_same(data_key, val); break;
+      case '!=': filter_str_diff(data_key, spec.val, false); break;
+      case '@':  filter_num_at(data_key, val); break;
+      case '&lt;':  filter_num(data_key, val, is_lt); break;
+      case '&lt;=': filter_num(data_key, val, is_le); break;
+      case '&gt;':  filter_num(data_key, val, is_gt); break;
+      case '&gt;=': filter_num(data_key, val, is_ge); break;
+    }
+  }
+}</span></pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . . ela aceita s&oacute; um argumento,
+            opcional, passado ao JavaScript,
+            que &eacute; uma lista de filtros,
+            padrão para uma lista vazia.&nbsp;
+            Cada filtro &eacute; um string.&nbsp;
+            A lista &eacute; analisada por . . .
+          </aside>
+        </section>
 
-          As chaves representam escolhas como
-          linguagem humana, linguagem de programa&ccedil;&atilde;o,
-          tempo minimo ou maximo de qual uma coisa precisa,
-          ou qualquer outra coisa que querem escolher.
+        <section>
+          <div class="main-text" style="font-size: 1.1em">
+            <code>
+              <pre>
+const SPEC_REGEX = /^([a-zA-Z0-9-_]+)\s*([<=>!@]+)\s*(.+)$/;
 
-          As compara&ccedil;&otilde;es sāo igual, n&atilde;o igual,
-          menos, menos ou igual, mais, e mais ou igual.&nbsp;
-          As compara&ccedil;&otilde;es de ordem s&atilde;o usadas
-          s&oacute; para os valores num&eacute;ricos,
-          e igual ou n&atilde;o-igual s&atilde;o para
-          os n&uacute;meros e os strings.&nbsp;
-          Por isso, voc&ecirc;s podem usar um filtro como
-          "linguagem-humana = portugu&ecirc;s"
-          (ou specificamente portugu&ecirc;s-brasileiro)
-          mas n&atilde;o "linguagem-humana > portugu&ecirc;s".
+function parse_specs(args, so_far) {
+  for (var arg of args) {
+    var key, op, val;
+    [key, op, val] = SPEC_REGEX.exec(arg).slice(1, 4);
+    so_far[key] = [op, val];
+  }
+  return so_far;
+}</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . . esse c&oacute;digo.&nbsp;
+            Ele usa um regex para dividir a string
+            em uma chave, uma comparação, e um valor.&nbsp;
 
-          Genaver analisa os filtros, para extrair os peda&ccedil;os,
-          e coloc&aacute;-los num dicion&aacute;rio.&nbsp;
-          Nesse dicion&aacute;rio, as chaves s&atilde;o as dos filtros,
-          e cada valor &eacute; um listo,
-          com a compara&ccedil;&atilde;o, e o valor, do filtro.&nbsp;
-          Por examplo, a lista dos filtros
-          ["ling-humana = portugu&ecirc;s", "tempo-min <= 30"]
-          se torna ao dicion&aacute;rio
-          { "ling-humana": [ "=", "portugu&ecirc;s" ],
-          "tempo-min": [ "<=", 30 ]}.&nbsp;
-          (Notam que o trinta &eacute; um numero, sem aspas.)
+            <br><br>
 
-          Depois de analisar o argumento no JavaScript, caso exista,
-          ela faz exatamente a mesma coisa com os argumentos dado na URL.&nbsp;
-          Por exemplo, se formos para "talk.html?ling-humana=english",
-          agora o "portugu&ecirc;s" no dicion&aacute;rio
-          &eacute; substitu&iacute;do por "english".
-          As outras entradas no dicion&aacute;rio,
-          como o limite de tempo de trinta minutos, continuam as mesmas.&nbsp;
-          Ent&atilde;o, os argumentos no JavaScript
-          podem ser usados como padr&otilde;es.
+            As chaves representam escolhas como
+            linguagem humana, linguagem de programa&ccedil;&atilde;o,
+            tempo minimo ou maximo de qual uma coisa precisa,
+            ou qualquer outra coisa que querem escolher.
 
-          Agora que Genaver tem todos os argumentos,
-          ela os aplica ao documento.&nbsp;
-          Para a compara&ccedil;&atilde;o de "n&atilde;o igual",
-          &eacute; muito simples —
-          ela usa querySelectorAll para encontrar todos os elementos
-          com esse valor para esse atributo, e os esconde.&nbsp;
-          Para "igual", &eacute; quase assim,
-          ela encontra todos os elementos com esse atributo,
-          com qualquer valor,
-          itera atrav&eacute;s deles,
-          e esconde os que n&atilde;o tem esse valor.&nbsp;
-          Para as outras compara&ccedil;&otilde;es,
-          &eacute; um pouco mais complexo que isso,
-          porque precisa converter os atributos de strings em n&uacute;meros,
-          e verificar seus rela&ccedil;&otilde;es ao argumento,
-          mas ainda &eacute; bastante simples.&nbsp;
-          Por exemplo, talvez queremos mostrar os elementos onde
-          o atributo "data-foobar" &eacute; mais que 42.&nbsp;
-          Genaver encontra os elementos com o atributo "data-foobar",
-          e para cada um, ela converte o valor do atributo,
-          de um string para um n&uacute;mero,
-          e se n&atilde;o &eacute; mais que 42, ela esconde o elemento.
+            <br><br>
 
-          E agora, vamos fazer uma pequena demonstra&ccedil;&atilde;o.
-                 
-        -->        
+            As compara&ccedil;&otilde;es sāo . . .
+          </aside>
+        </section>
 
+        <section>
+          <div class="main-text code">
+            <code>
+              <pre>
+<span style="color: gray">switch(op) {
+  case </span>'='<span style="color: gray">:  filter_str_same(data_key, val); break;
+  case </span>'!='<span style="color: gray">: filter_str_diff(data_key, spec.val, false); break;
+  case </span>'@'<span style="color: gray">:  filter_num_at(data_key, val); break;
+  case </span>'&lt;'<span style="color: gray">:  filter_num(data_key, val, is_lt); break;
+  case </span>'&lt;='<span style="color: gray">: filter_num(data_key, val, is_le); break;
+  case </span>'&gt;'<span style="color: gray">:  filter_num(data_key, val, is_gt); break;
+  case </span>'&gt;='<span style="color: gray">: filter_num(data_key, val, is_ge); break;
+}</span></pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . . igual, n&atilde;o igual,
+            uma coisa especial que explicarei mais tarde,
+            menos, menos ou igual, maior, e maior ou igual.&nbsp;
+            As compara&ccedil;&otilde;es de ordem s&atilde;o usadas
+            s&oacute; para os valores num&eacute;ricos,
+            e igual ou n&atilde;o-igual s&atilde;o para
+            os n&uacute;meros e os strings.&nbsp;
+            Por isso, voc&ecirc;s podem usar um filtro como
+            "linguagem &eacute; portugu&ecirc;s"
+            (ou specificamente portugu&ecirc;s-brasileiro)
+            mas n&atilde;o "linguagem &eacute; maior que portugu&ecirc;s".
+
+            <br><br>
+
+            Cada chave fica uma chave num dicion&aacute;rio,
+            onde o valor &eacute; uma lista,
+            com a compara&ccedil;&atilde;o, e o valor, do filtro.&nbsp;
+            Por examplo, . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text" style="font-size: 1.1em; text-align: left">
+            <code>["ling = pt", "tempo-min &lt;= 30"]</code><br><br>
+            <center>becomes</center><br>
+            <code>
+              { "ling"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ["=", &nbsp;"pt"],<br>
+              &nbsp;&nbsp;"tempo-min": ["&lt;=", 30&nbsp;&nbsp;] }
+            </code>
+          </div>
+          <aside class="notes">
+            . . . a lista dos filtros
+            linguagem &eacute; portugu&ecirc;s
+            e
+            tempo-min &eacute; menos ou igual a trinta,
+            se torna ao dicion&aacute;rio
+            com as chaves linguagem e tempo-min,
+            e as valores como isto.&nbsp;
+            (Observam que o trinta &eacute; um numero, sem aspas.)
+
+            <br><br>
+
+            Ent&atilde;o, . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.2em">
+            <code><pre><span style="color: gray">specs = parse_specs(args, {});
+</span>specs = parse_specs(fix_url_params(url_params), specs);</pre></code>
+          </div>
+          <aside class="notes">
+            . . . ela faz a mesma coisa com
+            os arguments passados na URL.&nbsp;
+            Mas, um sinal de igual
+            pode quebrar um filtro na URL!&nbsp;
+            Por isso, Genaver tem . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.3em">
+            <code>
+              <pre>
+function fix_url_params(url_params) {
+  const fixed_params = [];
+  for (var [key, val] of url_params) {
+    fixed_params.push(val ? `${key}=${val}` : key);
+  }
+  return fixed_params;
+}</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . . uma fun&ccedil;&atilde;o que
+            remonta os filtros quebrados, assim.&nbsp;
+            Ela leva os URL-parameters, como pars de chave e valor.&nbsp;
+            Se tem um valor,
+            junta-lo com a chave e um sinal de igual.&nbsp;
+            Se n&atilde;o, usa s&oacute; a chave.&nbsp;
+            Depois disto, temos uma lista de filtros,
+            num formato exatamente igual &agrave; lista passado no JavaScript,
+            e . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.2em">
+            <code><pre><span style="color: gray">specs = parse_specs(args, {});
+</span>specs = parse_specs(fix_url_params(url_params), specs);</pre></code>
+          </div>
+          <aside class="notes">
+            . . . a enviamos para a mesma fun&ccedil;&atilde;o.&nbsp;
+            Mas, em vez de enviar tamb&eacute;m um dicion&aacute;rio vazia,
+            enviamos o dicion&aacute;rio
+            dos filtros passado no JavaScript.&nbsp;
+            Ent&atilde;o, se passarmos na URL
+            uma compara&ccedil;&atilde;o ou um valor diferente
+            para a mesma chave que no JavaScript,
+            o que passamos na URL
+            &eacute; substitu&iacute;do
+            pelo que passamos no JavaScript.&nbsp;
+            Ent&atilde;o, os filtros no JavaScript
+            podem ser usados como padr&otilde;es,
+            para serem substitu&iacute;dos
+            pelos filtros na URL.&nbsp;
+            Por exemplo . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 2em">
+            <code><pre>generate_version(["ling=es"]);</pre></code>
+          </div>
+          <aside class="notes">
+            se temos a chamada para Genaver assim,
+            especificando a linguagem espanhol,
+            mas a URL e . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 3em">
+            <code><pre>talk.html?ling=pt</pre></code>
+          </div>
+          <aside class="notes">
+            assim, especificando a linguagem <i>portugu&ecirc;s</i>,
+            vamos ver a apresenta&ccedil;&atilde;o em portugu&ecirc;s.
+
+            <br><br>
+
+            Agora que Genaver tem todos os argumentos, ela . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code">
+            <code>
+              <pre>
+for (const key of Object.keys(specs)) {
+  var op, val;
+  [op, val] = specs[key];
+  var data_key = `data-${key}`;
+  switch(op) {
+    case '=':  filter_str_same(data_key, val); break;
+    case '!=': filter_str_diff(data_key, spec.val, false); break;
+    case '@':  filter_num_at(data_key, val); break;
+    case '&lt;':  filter_num(data_key, val, is_lt); break;
+    case '&lt;=': filter_num(data_key, val, is_le); break;
+    case '&gt;':  filter_num(data_key, val, is_gt); break;
+    case '&gt;=': filter_num(data_key, val, is_ge); break;
+  }
+}</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . .  os aplica ao documento, filtro por filtro.&nbsp;
+            Para cada um, ela precede a chave com a palavra "data",
+            e faz algo um pouco diferente,
+            de acordo com a compara&ccedil;&atilde;o.
+
+            <br><br>
+
+            Para a compara&ccedil;&atilde;o de "n&atilde;o igual",
+            &eacute; muito simples —
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.2em">
+            <code>
+              <pre>
+function filter_str_diff(key, value) {
+  const all =
+    document.querySelectorAll(`[${key}="${value}"]`);
+  for (elt of all) elt.style.display = 'none';
+}</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            ela usa querySelectorAll para encontrar todos os elementos
+            com esse valor para esse atributo, e os esconde.&nbsp;
+
+            <br><br>
+
+            Para "igual", . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.2em">
+            <code>
+              <pre>
+function filter_str_same(key, value) {
+  const all = document.querySelectorAll(`[${key}]`);
+  for (elt of all) {
+    if (elt.getAttribute(key) != value) {
+      elt.style.display = 'none';
+    }
+  }
+}</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . .  &eacute; quase mesmo.&nbsp;
+            Ela encontra todos os elementos com esse atributo,
+            com <i>qualquer</i> valor,
+            itera atrav&eacute;s deles,
+            e esconde os que <i>n&atilde;o</i> tem esse valor.&nbsp;
+
+            <br><br>
+
+            Para as outras compara&ccedil;&otilde;es, . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.2em">
+            <code>
+              <pre>
+case '&lt;':  filter_num(data_key, val, is_lt); break;
+case '&lt;=': filter_num(data_key, val, is_le); break;
+case '&gt;':  filter_num(data_key, val, is_gt); break;
+case '&gt;=': filter_num(data_key, val, is_ge); break;</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . .  &eacute; um pouco mais complexo que isso,
+          porque precisa . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.1em">
+            <code>
+              <pre>
+function filter_num(key, value, comp_fn) {
+  const limit = parseInt(value);
+  const all = document.querySelectorAll(`[${key}]`);
+  for (elt of all) {
+    if (! comp_fn(parseInt(elt.getAttribute(key)), limit)) {
+      elt.style.display = 'none';
+    }
+  }
+}</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . . converter os atributos de strings em n&uacute;meros,
+            e verificar seus rela&ccedil;&otilde;es ao argumento.&nbsp;
+            Ela faz isso por encontrar todos os elementos com o atributo,
+            e para cada um,
+            usar uma fun&ccedil;&atilde;o de compara&ccedil;&atilde;o
+            para verificar se
+            a rela&ccedil;&atilde;o desejado &eacute; verdadeira,
+            e se <i>n&atilde;o</i>, esconde o elemento.&nbsp;
+            As . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.4em">
+            <code>
+              <pre>
+function is_ge(x, limit) { return x &gt;= limit }
+function is_gt(x, limit) { return x &gt;  limit }
+function is_le(x, limit) { return x &lt;= limit }
+function is_lt(x, limit) { return x &lt;  limit }</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . .  fun&ccedil;&otilde;es de compara&ccedil;&atilde;o
+            s&atilde;o muito simples.&nbsp;
+            Eu poderia usar literais de fun&ccedil;&atilde;o,
+            em vez de fun&ccedil;&otilde;es reais,
+            mas ent&atilde;o n&atilde;o poderia
+            fazer a &uacute;ltima compara&ccedil;&atilde;o
+            t&atilde;o simples.&nbsp;
+            A compara&ccedil;&atilde;o de arroba . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.6em">
+            <code>
+              <pre>
+function filter_num_at(key, value) {
+  filter_num(`${key}-min`, value, is_le);
+  filter_num(`${key}-max`, value, is_ge);
+}</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . . &eacute; &uacute;til quando queremos mostrar os elementos,
+            cujo algum atributo &eacute; maior que algo limite,
+            e algum <i>outro</i> atributo &eacute; <i>menor</i>
+            que <i>o mesmo limite</i>.&nbsp;
+            Principalmente, eu uso isto para marcar alguns elementos com
+            o m&iacute;nimo e m&aacute;ximo quantia de tempo
+            para os incluir.&nbsp;
+            Por exemplo, . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.5em">
+            <code>
+              <pre>
+&lt;p data-tempo-max="19"&gt;
+&nbsp;&nbsp;Explica&ccedil;&atilde;o curta.
+&lt;/p&gt;
+&lt;p data-tempo-min="20" data-tempo-max="29"&gt;
+&nbsp;&nbsp;Explica&ccedil;&atilde;o m&eacute;dia.
+&lt;/p&gt;
+&lt;p data-tempo-min="30"&gt;
+&nbsp;&nbsp;Explica&ccedil;&atilde;o longa.
+&lt;/p&gt;</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . . se tenho algo que eu queira dizer,
+            e poderia diz&ecirc;-lo em um minuto, cinco, ou dez,
+            talvez eu quereria diz&ecirc;-lo de maniera curta
+            quando tenho menos que vinte minutos para falar,
+            de maneira m&eacute;dia
+            quando tenho vinte a vinte-nove minutos,
+            e de maneira longa quando tenho trinta minutos ou mais.&nbsp;
+            Se tenho quinze minutos, e uso o filtro "tempo arroba quinze", . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="main-text code" style="font-size: 1.6em">
+            <code>
+              <pre>
+function filter_num_at(key, value) {
+  filter_num(`${key}-min`, value, is_le);
+  filter_num(`${key}-max`, value, is_ge);
+}</pre>
+            </code>
+          </div>
+          <aside class="notes">
+            . . . isto faz a mesmo coisa como se eu tivesse passado
+            "tempo-min &eacute; menor ou igual a quinze" e
+            "tempo-max &eacute; maior ou igual a quinze".
+
+            <br><br>
+
+            E agora, vamos fazer uma pequena demonstra&ccedil;&atilde;o.
+          </aside>
+        </section>
+        
         <section>
           <div class="main-text code" style="font-size: 2em">
             generate_version([]);
@@ -487,11 +940,12 @@
             </code>
           </div>
           <aside class="notes">
-            E aqui est&aacute; o c&oacute;digo da pr&oacute;xima desliza.&nbsp;
+            . . . aqui est&aacute; o c&oacute;digo
+            da pr&oacute;xima desliza.&nbsp;
             Se irmos al&iacute;,
             o que voc&ecirc;s pensam que aparecer&aacute;?&nbsp;
-            E quem pensa "nada"?&nbsp;
-            Levante uma m&atilde;o ou fa&ccedil; barulho.&nbsp;
+            Quem pensa "nada"?&nbsp;
+            Levante uma m&atilde;o ou fa&ccedil;a um barulho.&nbsp;
             E quem pensa "tudo"?&nbsp;
             De novo, m&atilde;o ou barulho.&nbsp;
             Algumas outras respostas?&nbsp;
@@ -579,14 +1033,33 @@
         </section>
 
         <section>
-          <div class="main-text code">
+          <div class="main-text code" style="font-size: 0.8em">
             <code>
+              &lt;p data-tempo-max="19"&gt;<br>
+              &nbsp;&nbsp;Explica&ccedil;&atilde;o curta.<br>
+              &lt;/p&gt;<br>
+              &lt;p data-tempo-min="20" data-tempo-max="29"&gt;<br>
+              &nbsp;&nbsp;Explica&ccedil;&atilde;o m&eacute;dia.<br>
+              &lt;/p&gt;<br>
+              &lt;p data-tempo-min="30"&gt;<br>
+              &nbsp;&nbsp;Explica&ccedil;&atilde;o longa.<br>
+              &lt;/p&gt;
             </code>
           </div>
           <aside class="notes">
             De novo, aqui est&aacute; o c&oacute;digo
             da pr&oacute;xima desliza.&nbsp;
-            Vamos-l&aacute; e ver!
+            Observa que as explica&ccedil;&otilde;es
+            s&atilde;o marcadas com os atributos
+            "tempo-min", "tempo-max", ou talvez ambos.&nbsp;
+            Queremos a explica&ccedil;&atilde;o curta
+            se temos menos que vinte minutos para falar,
+            a m&eacute;dia se temos de vinte a vinte-nove,
+            e a longa se temos trinta ou mais.
+
+            <br><br>
+
+            Vamos-l&aacute; e ver o que aparece!
           </aside>
         </section>
 
@@ -598,49 +1071,41 @@
           </div>
           <aside class="notes">
             Como antes, vemos tudo, porque
-            Genaver n&atilde;o sabe o que esconder.&nbsp;
-            Mas vamos mudar a URL,
-            por adicionar <i>dois</i> argumentos,
-            os tempos m&iacute;nimo e m&aacute;ximo,
-            geralmente os mesmos n&uacute;meros,
-            mas com compara&ccedil;&otilde;es diferentes!&nbsp;
-            Vamos supor que temos dez minutos para falar.&nbsp;
-            Queremos as explica&ccedil;&otilde;es que
-            n&atilde;o precisam mais que isso,
-            ent&atilde;o dizemos "tempo-min<=10".&nbsp;
-            N&atilde;o ainda precisamos o "tempo-max".&nbsp;
-            . . .
-            Vamos recarregar a p&aacute;gina,
-            e vemos s&oacute; a explica&ccedil;&atilde;o curta.&nbsp;
-            Se mudarmos a dezenove minutos,
-            . . .
-            vemos ainda a explica&ccedil;&atilde;o curta,
-            mas se mudarmos a vinte minutos,
-            . . .
-            vemos a curta <i>e</i> a m&eacute;dia!&nbsp;
-            Isso &eacute; porque
-            agora precisamos o "tempo-max",
-            para esconder a curta.&nbsp;
-            Ent&atilde;o, adicionamos isso,
-            recarregamos a p&aacute;gina,
-            . . .
-            e agora vemos s&oacute;
-            a explica&ccedil;&atilde;o m&eacute;dia!&nbsp;
-            Se mudarmos a vinte e nove minutos,
-            e recarregarmos a p&aacute;gina,
-            . . .
-            vemos ainda a m&eacute;dia,
-            mas se mudarmos a trinta minutos,
-            e recarregarmos a p&aacute;gina,
-            . . .
-            agora vemos s&oacute; a longa!&nbsp;
-            E, porque n&atilde;o temos explica&ccedil;&otilde;es mais longas,
-            podemos remover o tempo-min, assim,
-            e recarregar a p&aacute;gina,
-            . . .
-            e ainda vemos s&oacute; a longa!&nbsp;
+            n&atilde;o dissemos a Genaver o que esconder.&nbsp;
+            Mas vamos mudar a URL de novo.&nbsp;
+
+            <br><br>
+
+            Podemos dizer, se temos por exemplo
+            quinze minutos para falar,
+            tempo-min menos ou igual a quinze,
+            e tempo-max maior ou igual a quinze,
+            e isso d&aacute; certo.&nbsp;
+            Mas, &eacute; um pouco chato,
+            precisar dar ambos o tempos
+            m&iacute;nimo e m&aacute;ximo,
+            quando s&atilde;o geralmente o mesmo n&uacute;mero,
+            n&eacute;?&nbsp;
+            Podemos dizer, em vez de desses <i>dois</i> argumentos,
+            tempo <i>arroba</i> quinze,
+            e Genaver interpreta isso como o min e o max, assim.&nbsp;
+            E a vinte, vemos a explica&ccedil;&atilde;o m&eacute;dia,
+            assim de novo com vinte-nove,
+            e a trinta (ou mais),
+            vemos a explica&ccedil;&atilde;o longa.
+
+            <br><br>
+
+            Podemos ainda usar os compara&ccedil;&otilde;es
+            de menor, maior, menor ou igual, e maior ou igual,
+            para outros prop&oacute;sitos,
+            mas eu pessoalmente n&atilde;o tenho motivos para us&aacute;-los,
+            ent&atilde;o n&atilde;o vou demonstr&aacute;-los.
           </aside>
         </section>
+
+        <!-- TODO: ADD A CONCLUSION SLIDE OR TWO, AND "ANY QUESTIONS?" -->
+
       </div>
     </div>
 

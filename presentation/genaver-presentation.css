@@ -25,6 +25,8 @@
   transform: translateX(-50%);
 }
 
+.reveal pre { width: 100% }  /* override theme stupidity! */
+
 .reveal span.slide-caption {
   bottom: 0;
   font-size: 0.2em;
@@ -90,10 +92,6 @@ section.present::after {
 .reveal img {
   border-radius: 1em;
   margin: 0;
-}
-
-.reveal img.code {
-  border-radius: 0;
 }
 
 /* WHY THE HELL CAN'T I PUT THESE ON A CODE *TAG*?!?!?! */
