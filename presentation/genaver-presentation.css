@@ -4,7 +4,7 @@
 }
 
 .reveal section.present {
-  background: #112;
+  background: #112;  /* not quite black, plus a hint of blue */
   height: 100%;
 }
 
@@ -33,7 +33,7 @@
 .reveal section.present h5,
 .reveal section.present h6
 {
-  color: #ded;
+  color: #ded;  /* not quite white, with a hint of green */
   font-family: "Trebuchet MS", "Helvetica Neue", sans-serif;
   text-transform: none;  /* else it gets uppercased, yuck! */
   margin-bottom: 0.05em;
@@ -42,6 +42,7 @@
 
 .reveal section.present img {
   border-radius: 1em;
+  height: 100%;
   margin: 0;
 }
 
@@ -59,13 +60,26 @@
 /* for debugging */
 .reveal section.present .bordered { border: 1px solid red }
 
+/*
+ * not to be confused with centerING!
+ * still used for the nope-scope on jenny's number;
+ * would love to find some other way to center that
+ * and get rid of this class,
+ * because transforms wreak havoc with reveal.js's pdf-printing!
+ */
 .reveal section.present .centered {
   position: absolute;
   left: 50%;
   top: calc(var(--main-height) / 2);
   transform: translate(-50%,-50%);  /* of the div size! */
-  white-space: nowrap;
-  width: fit-content;
+}
+
+/* should only be used if there is only ONE item inside this */
+.reveal section.present .centering {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
 }
 
 /* WHY THE HELL CAN'T I PUT THESE ON A CODE *TAG*?!?!?! */
@@ -73,11 +87,4 @@
   line-height: 1em;
   text-align: left;
   white-space: nowrap;
-}
-
-.reveal section.present .vctring {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
 }
