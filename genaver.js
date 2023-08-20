@@ -55,7 +55,10 @@ function parse_specs(args, so_far) {
 function fix_url_params(url_params) {
   const fixed_params = [];
   for (var [key, val] of url_params) {
-    fixed_params.push(val ? `${key}=${val}` : key);
+    if (key.startsWith('gv-')) {
+      const key2 = key.replace(/^gv-/, '');
+      fixed_params.push(val ? `${key2}=${val}` : key2);
+    }
   }
   return fixed_params;
 }

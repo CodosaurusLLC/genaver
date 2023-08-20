@@ -408,7 +408,7 @@
         </section>
 
         <section>
-          <div class="centering code" style="font-size: 0.25em">
+          <div class="centering code" style="font-size: 0.24em">
             <code>
               <pre>
 function generate_version(args=[]) {
@@ -448,7 +448,10 @@ function parse_specs(args, so_far) {
 function fix_url_params(url_params) {
   const fixed_params = [];
   for (var [key, val] of url_params) {
-    fixed_params.push(val ? `${key}=${val}` : key);
+    if (key.startsWith('gv-')) {
+      const key2 = key.replace(/^gv-/, '');
+      fixed_params.push(val ? `${key2}=${val}` : key2);
+    }
   }
   return fixed_params;
 }
@@ -708,7 +711,10 @@ specs = parse_specs(fix_url_params(url_params), specs);
 function fix_url_params(url_params) {
   const fixed_params = [];
   for (var [key, val] of url_params) {
-    fixed_params.push(val ? `${key}=${val}` : key);
+    if (key.startsWith('gv-')) {
+      const key2 = key.replace(/^gv-/, '');
+      fixed_params.push(val ? `${key2}=${val}` : key2);
+    }
   }
   return fixed_params;
 }
@@ -769,7 +775,7 @@ specs = parse_specs(fix_url_params(url_params), specs);
 
         <section>
           <div class="centering code" style="font-size: 2em">
-            <code>talk.html?ling=pt</code>
+            <code>talk.html?gv-ling=pt</code>
           </div>
           <aside class="notes">
             assim, especificando a linguagem <i>portugu&ecirc;s</i>,
@@ -1230,7 +1236,7 @@ generate_version(["ling-humana = pt",
                 <b><big><center>/</center></big></b><br>
 
                 <pre>
-talk.html?ling-humana=pt&ling-prog=elixir&tempo@30
+talk.html?gv-ling-humana=pt&gv-ling-prog=elixir&gv-tempo@30
                 </pre>
               </code>
             </div>
@@ -1302,7 +1308,7 @@ talk.html?ling-humana=pt&ling-prog=elixir&tempo@30
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
-      Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
+      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([]);
     </script>
   </body>

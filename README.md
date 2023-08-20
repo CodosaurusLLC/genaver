@@ -282,12 +282,14 @@ between the comparator and the other pieces.
 Options specified in the URL have the exact same syntax
 (including that spaces may be included or not),
 and will _override_ choices passed in the JS.&nbsp;
-Simply put them after the URL like you would any other URL params.&nbsp;
+Simply put them after the URL like you would any other URL params,
+AND tack gv- onto the front.&nbsp;
 That is, add a ? to the URL,
-then all the options _separated with ampersands_ (&amp;s).&nbsp;
+then all the options _separated with ampersands_ (&amp;s),
+with gv- on the front of each one.&nbsp;
 For instance:
 
-`my-talk.html?human-lang=french&prog-lang=elixir&min_time<40&var-city=Paris`
+`my-talk.html?gv-human-lang=french&gv-prog-lang=elixir&gv-min_time<40&gv-var-city=Paris`
 
 (It is perfectly okay that there is no `=` in `min_time<40`.&nbsp;
 When there is one,
