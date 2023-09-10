@@ -78,9 +78,7 @@ function filter_num(key, value, comp_fn) {
   const all = document.querySelectorAll(`[${key}]`);
   if (all.length === 0) alert(`WARNING: No elements have attribute ${key}!`);
   for (elt of all) {
-    if (! comp_fn(parseInt(elt.getAttribute(key)), limit)) {
-      elt.style.display = 'none';
-    }
+    if (! comp_fn(parseInt(elt.getAttribute(key)), limit)) elt.remove();
   }
 }
 
@@ -90,7 +88,7 @@ function filter_str_diff(key, value) {
     alert(`WARNING: No elements have value ${value} for attribute ${key}!`);
     return;
   }
-  for (elt of all) elt.style.display = 'none';
+  for (elt of all) elt.remove();
 }
 
 function filter_str_same(key, value) {
@@ -100,7 +98,7 @@ function filter_str_same(key, value) {
     return;
   }
   for (elt of all) {
-    if (elt.getAttribute(key) != value) elt.style.display = 'none';
+    if (elt.getAttribute(key) != value) elt.remove();
   }
 }
 
