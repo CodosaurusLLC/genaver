@@ -138,7 +138,8 @@
 
             N&atilde;o foi a &uacute;nica vez que
             eu fiz essa apresenta&ccedil;&atilde;o.&nbsp;
-            Eu a fiz com a introdu&ccedil;&atilde;o em
+            Eu a fiz cerca vinte vezes,
+            com a introdu&ccedil;&atilde;o em
             muitas linguagens humanas,
             o c&oacute;digo em v&aacute;rias
             linguagens de programa&ccedil;&atilde;o,
@@ -218,7 +219,7 @@
         </section>
 
         <section>
-          <div class="centering code" style="font-size: 0.6em">
+          <div class="centering code" style="font-size: 0.7em">
             <code>
               &lt;dave-special-tag linguagem-humana="portugu&ecirc;s"&gt;<br>
               &nbsp;&nbsp;Isto &eacute; em portugu&ecirc;s<br>
@@ -346,7 +347,8 @@
             para as quais
             o JavaScript &eacute; verdadeiramente bom!&nbsp;
             Eu s&oacute; tinha que mudar minha ideia
-            de copiar os peda&ccedil;os bons, a esconder os ruins!
+            de copiar os peda&ccedil;os bons,
+            a esconder ou remover os ruins!
 
             <br><br>
 
@@ -388,7 +390,7 @@
             . . . ela deu certo!&nbsp;
             Eu pudesse passar argumentos diferentes ao JavaScript,
             para escolher a introdu&ccedil;&atilde;o,
-            e esconder peda&ccedil;os que precisam tempo demais,
+            e remover peda&ccedil;os que precisam tempo demais,
             &agrave;s vezes substituindo peda&ccedil;os menores.
 
             <br><br>
@@ -471,7 +473,7 @@ function filter_num(key, value, comp_fn) {
   const all  = document.querySelectorAll(`[${key}]`);
   for (elt of all) {
     if (! comp_fn(parseInt(elt.getAttribute(key)), limit)) {
-      elt.style.display = 'none';
+      elt.style.remove();
     }
   }
 }
@@ -479,15 +481,13 @@ function filter_num(key, value, comp_fn) {
 function filter_str_diff(key, value) {
   const all =
     document.querySelectorAll(`[${key}="${value}"]`);
-  for (elt of all) elt.style.display = 'none';
+  for (elt of all) elt.style.remove();
 }
 
 function filter_str_same(key, value) {
   const all = document.querySelectorAll(`[${key}]`);
   for (elt of all) {
-    if (elt.getAttribute(key) != value) {
-      elt.style.display = 'none';
-    }
+    if (elt.getAttribute(key) != value) elt.style.remove();
   }
 }
               </pre>
@@ -705,7 +705,7 @@ specs = parse_specs(fix_url_params(url_params), specs);
         </section>
 
         <section>
-          <div class="centering code" style="font-size: 1.3em">
+          <div class="centering code" style="font-size: 1.2em">
             <code>
               <pre>
 function fix_url_params(url_params) {
@@ -774,7 +774,7 @@ specs = parse_specs(fix_url_params(url_params), specs);
         </section>
 
         <section>
-          <div class="centering code" style="font-size: 2em">
+          <div class="centering code" style="font-size: 1.8em">
             <code>talk.html?gv-ling=pt</code>
           </div>
           <aside class="notes">
@@ -829,14 +829,14 @@ for (const key of Object.keys(specs)) {<span style="color: gray">
 function filter_str_diff(key, value) {
   const all =
     document.querySelectorAll(`[${key}="${value}"]`);
-  for (elt of all) elt.style.display = 'none';
+  for (elt of all) elt.style.remove();
 }
               </pre>
             </code>
           </div>
           <aside class="notes">
             ela usa querySelectorAll para encontrar todos os elementos
-            com esse valor para esse atributo, e os esconde.&nbsp;
+            com esse valor para esse atributo, e os remove.&nbsp;
 
             <br><br>
 
@@ -852,7 +852,7 @@ function filter_str_same(key, value) {
   const all = document.querySelectorAll(`[${key}]`);
   for (elt of all) {
     if (elt.getAttribute(key) != value) {
-      elt.style.display = 'none';
+      elt.style.remove();
     }
   }
 }
@@ -864,7 +864,7 @@ function filter_str_same(key, value) {
             Ela encontra todos os elementos com esse atributo,
             de <i>qualquer</i> valor,
             itera atrav&eacute;s deles,
-            e esconde os que <i>n&atilde;o</i> tem esse valor.&nbsp;
+            e remove os que <i>n&atilde;o</i> tem esse valor.&nbsp;
 
             <br><br>
 
@@ -898,7 +898,7 @@ function filter_num(key, value, comp_fn) {
   const all = document.querySelectorAll(`[${key}]`);
   for (elt of all) {
     if (! comp_fn(parseInt(elt.getAttribute(key)), limit)) {
-      elt.style.display = 'none';
+      elt.style.remove();
     }
   }
 }
@@ -913,7 +913,7 @@ function filter_num(key, value, comp_fn) {
             usar uma fun&ccedil;&atilde;o de compara&ccedil;&atilde;o
             para verificar se
             a rela&ccedil;&atilde;o desejado &eacute; verdadeira,
-            e se <i>n&atilde;o</i>, esconde o elemento.&nbsp;
+            e se <i>n&atilde;o</i>, remove o elemento.&nbsp;
             As . . .
           </aside>
         </section>
@@ -1081,15 +1081,15 @@ function filter_num_at(key, value) {
           <aside class="notes">
             Vemos tudo, porque Genaver n&atilde;o funciona por
             copiar os peda&ccedil;os bons,
-            mas <i>esconder</i> os <i>ruins</i>.&nbsp;
+            mas <i>remover</i> os <i>ruins</i>.&nbsp;
             N&atilde;o dissemos o que queremos,
-            ent&atilde;o, Genaver n&atilde;o sabe o que esconder,
-            e n&atilde;o esconde nada.
+            ent&atilde;o, Genaver n&atilde;o sabe o que remover,
+            e n&atilde;o remove nada.
 
             <br><br>
 
             Mas agora, vamos mudar a URL,
-            por adicionar o argumento ling=en.&nbsp;
+            por adicionar o argumento gv-ling=en.&nbsp;
             Se agora n&oacute;s recarregarmos a p&aacute;gina,
             agora vemos s&oacute; a vers&atilde;o em ingles.&nbsp;
             E podemos fazer a mesma coisa com franc&ecirc;s
@@ -1133,9 +1133,9 @@ function filter_num_at(key, value) {
           </div>
           <aside class="notes">
             De novo, vemos tudo, porque
-            de novo, Genaver n&atilde;o sabe o que esconder.&nbsp;
+            de novo, Genaver n&atilde;o sabe o que remover.&nbsp;
             Mas vamos mudar a URL,
-            por adicionar o argumento ling-prog=c,
+            por adicionar o argumento gv-ling-prog=c,
             e recarregamos a p&aacute;gina.&nbsp;
             Agora vemos s&oacute; a vers&atilde;o em C.&nbsp;
             E podemos fazer a mesma coisa com Elixir e Ruby.
@@ -1188,7 +1188,7 @@ function filter_num_at(key, value) {
           </div>
           <aside class="notes">
             Como antes, vemos tudo, porque
-            n&atilde;o dissemos a Genaver o que esconder.&nbsp;
+            n&atilde;o dissemos a Genaver o que remover.&nbsp;
             Mas vamos mudar a URL de novo.&nbsp;
 
             <br><br>
@@ -1213,7 +1213,7 @@ function filter_num_at(key, value) {
 
             <br><br>
 
-            Podemos ainda usar os compara&ccedil;&otilde;es de ordem
+            Podemos ainda usar as compara&ccedil;&otilde;es de ordem
             para outros prop&oacute;sitos,
             mas eu pessoalmente n&atilde;o tenho motivos para us&aacute;-los,
             ent&atilde;o n&atilde;o vou demonstr&aacute;-los.
@@ -1225,7 +1225,7 @@ function filter_num_at(key, value) {
         </section>
 
         <section>
-          <div class="centering code" style="font-size: 1.3em">
+          <div class="centering code" style="font-size: 1.1em">
             <code>
               <pre>
 generate_version(["ling-humana = pt",
@@ -1273,10 +1273,10 @@ talk.html?gv-ling-humana=pt&gv-ling-prog=elixir&gv-tempo@30
             . . . se h&aacute; perguntas, aceitarei-las agora,
             e se voc&ecirc;s pensarem em algo mais tarde,
             aqui est&atilde;o minhas informa&ccedil;&otilde;es de contato,
-            e as URLs de Genaver e dos slides desta apresenta&ccedil;&atilde;,
+            e as URLs de Genaver e dos slides desta apresenta&ccedil;&atilde;o,
             completo com um roteiro.&nbsp;
             Eu posso <i>falar</i> o portugu&ecirc;s rapido,
-            mas n&atilde;o posso <i>entender</i>-lo rapido, ent&atilde;o
+            mas n&atilde;o posso <i>entendé</i>-lo rapido, ent&atilde;o
             se h&aacute; perguntas, eu pe&ccedil;o que voc&ecirc;s
             perguntem um pouco devagar . . . ou em ingl&ecirc;s.&nbsp;
             H&aacute; perguntas?

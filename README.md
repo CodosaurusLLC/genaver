@@ -106,9 +106,15 @@ with about 20 lines of JS,
 even with some redundancy.&nbsp;
 So I cleaned up the code a bit,
 started thinking about tests
-(coming eventually!),
+(coming eventually!)
+and more features,
 wrote up this README,
 and here we are!
+
+(Later I also discovered that
+reveal.js works by changing the `display` property,
+thus clobbering the hiding that Genaver does,
+so now it actually _removes_ parts.)
 
 ## How to Use It
 
