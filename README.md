@@ -326,10 +326,10 @@ then it's hidden, and similarly for other opposing pairs of comparison.&nbsp;
 
 When you want _inequality_, it's rather simple.&nbsp;
 Genaver can simply look up all the elements with
-the undesired value for that attribute, and hide them.&nbsp;
+the undesired value for that attribute, and remove them.&nbsp;
 For anything else, it looks up those that have the desired attribute,
 loops through them, does the desired comparison,
-and hides the element if the comparison is false.
+and removes the element if the comparison is false.
 
 ### Constants
 
