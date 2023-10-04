@@ -27,7 +27,7 @@ function generate_version(args=[]) {
         if (key.slice(0, 4) == 'var-') sub_vars(key, val);
         else filter_str_same(data_key, val);
         break;
-      case '!=': filter_str_diff(data_key, spec.val, false); break;
+      case '!=': filter_str_diff(data_key, val); break;
       case '@':  filter_num_at(data_key, val); break;
       case '<':  filter_num(data_key, val, is_lt); break;
       case '<=': filter_num(data_key, val, is_le); break;

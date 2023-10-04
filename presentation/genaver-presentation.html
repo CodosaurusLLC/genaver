@@ -89,8 +89,9 @@
         </section>
 
         <section>
-          <div class="centering" style="font-size: 4em">867-5309</div>
-          <img src="images/nope-scope.png" class="centered" style="z-index: 1">
+          <div class="centering" style="font-size: 3em; font-style: italic">
+            🎼🎵867-5309🎶
+          </div>
           <aside class="notes">
             . . . Jennifer, nem . . .
           </aside>
@@ -109,7 +110,7 @@
           <span class="slide-caption">Image: https://commons.wikimedia.org/wiki/File:King_%26_Barnes_Jenever_vaten.JPG</span>
           <aside class="notes">
             . . . a bebida, em verdade pronunciada je-NEE-ver,
-            como eu descobri h&aacute; alguns meses.&nbsp;
+            como eu descobri s&oacute; este ano em maio.&nbsp;
             Genaver &eacute; uma abrevia&ccedil;&atilde;o
             para uma frase em ingl&ecirc;s,
           </aside>
@@ -127,7 +128,10 @@
             . . .
             GENerate A VERsion,
             ou em portugu&ecirc;s,
-            gerar uma vers&atilde;o.&nbsp;
+            gerar uma vers&atilde;o.
+
+            <br><br>
+
             Mas, uma vers&atilde;o do que, e por que?&nbsp;
             Voc&ecirc;s que viram . . .
           </aside>
@@ -182,13 +186,13 @@
             <div style="border: 2px solid white; padding: 0.5em">
               <h2>Apresenta&ccedil;&atilde;o</h2>
               <small>
-                ...<br>
                 Introdu&ccedil;&atilde;o em Portugu&ecirc;s<br>
                 Introdu&ccedil;&atilde;o em Japon&ecirc;s<br>
                 Introdu&ccedil;&atilde;o em Klingon<br>
                 ...<br>
-                Explica&ccedil;&atilde;o Prolixa<br>
-                Explica&ccedil;&atilde;o Concisa (da mesma coisa)<br>
+                Explica&ccedil;&atilde;o Longa<br>
+                Explica&ccedil;&atilde;o M&eacute;dia (da mesma coisa)<br>
+                Explica&ccedil;&atilde;o Curta<br>
                 ...<br>
                 C&oacute;digo em Elixir<br>
                 C&oacute;digo em Ruby<br>
@@ -233,7 +237,7 @@
         </section>
 
         <section>
-          <div class="centering" style="font-size: 0.9em">
+          <div class="centering" style="font-size: 1.1em">
             <div>
               <pre><code data-trim data-noescape class="language-html">
 &lt;dave-special-tag linguagem-humana="portugu&ecirc;s"&gt;
@@ -266,15 +270,16 @@
             <div style="font-size: 1.4em">
               <p>Com argumentos de escolher<br>
               portugu&ecirc;s e Elixir:</p>
-              <code data-trim data-noescape><pre style="font-size: 1.1em">
+              <pre style="font-size: 1.1em"><code data-trim data-noescape class="language-js">
 Isto &eacute; em portugu&ecirc;s
 IO.puts("Ol&aacute;, mundo!")
-              </pre></code>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
             . . . fazer um novo arquivo de acordo com meus desejos.&nbsp;
-            Eu me esforcei um pouco em pensar nisso, e procrastinei.&nbsp;
+            Eu me esforcei um pouco em pensar nisso, e . . .
+            procrastinei.&nbsp;
             Meses mais tarde, tenho a ideia de fazer
             um abuso grosseiro do . . .
 
@@ -284,7 +289,7 @@ IO.puts("Ol&aacute;, mundo!")
         <section>
           <div class="centering">
             <div>
-              <code data-trim data-noescape class="language-c"><pre style="font-size: 0.7em">
+              <pre style="font-size: 0.7em"><code data-trim data-noescape class="language-c">
 #define ENGLISH   1
 #define FRANCAIS  2
 #define PORTUGU&Ecirc;S 3
@@ -298,7 +303,7 @@ IO.puts("Ol&aacute;, mundo!")
 #elif WANTED_LANGUAGE == PORTUGU&Ecirc;S
     Ol&aacute;, mundo!
 #endif
-              </pre></code>
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -311,14 +316,16 @@ IO.puts("Ol&aacute;, mundo!")
 
         <section>
           <div class="centering">
-            <code data-trim data-noescape><pre style="font-size: 1em">
+            <div>
+              <pre style="font-size: 1em"><code data-trim data-noescape class="language-c">
 #include "introduction.html"
 #include "problem_description.html"
 #include "proposed_solution.html"
 #include "tech_description.html"
 #include "pros_and_cons.html"
 #include "conclusion.html"
-            </pre></code>
+              </code></pre>
+            </div>
           </div>
           <aside class="notes">
             . . . "include",
@@ -416,7 +423,7 @@ IO.puts("Ol&aacute;, mundo!")
             substituindo pelos valores passado direto ao JavaScript.
             Ent&atilde;o, pudesse usar exatamente o mesmo HTML para
             muitas vers&otilde;es de uma apresenta&ccedil;&atilde;o,
-            e configur&aacute;-lo com argumentos na URL.
+            e configur&aacute;-lo s&oacute; com argumentos na URL.
 
             <br><br>
 
@@ -425,9 +432,9 @@ IO.puts("Ol&aacute;, mundo!")
         </section>
 
         <section>
-          <div class="centering" style="font-size: 0.19em">
+          <div class="centering" style="font-size: 0.23em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 function generate_version(args=[]) {
   const url_params = Array.from(new URLSearchParams(window.location.search));
   var   specs;
@@ -441,12 +448,12 @@ function generate_version(args=[]) {
     var data_key = `data-${key}`;
     switch(op) {
       case '=':  filter_str_same(data_key, val); break;
-      case '!=': filter_str_diff(data_key, spec.val, false); break;
-      case '@':  filter_num_at(data_key, val); break;
+      case '!=': filter_str_diff(data_key, val); break;
       case '&lt;':  filter_num(data_key, val, is_lt); break;
       case '&lt;=': filter_num(data_key, val, is_le); break;
       case '&gt;':  filter_num(data_key, val, is_gt); break;
       case '&gt;=': filter_num(data_key, val, is_ge); break;
+      case '@':  filter_num_at(data_key, val); break;
     }
   }
 }
@@ -514,7 +521,7 @@ function filter_str_same(key, value) {
             voc&ecirc;s leiam tudo isso,
             numa fonte t&atilde;o pequena!&nbsp;
             Vamos ver isto pe&ccedil;a por pe&ccedil;a.&nbsp;
-            Mas antes, um pequeno aviso:
+            Mas antes, mais um pequeno aviso:
           </aside>
         </section>
 
@@ -536,33 +543,27 @@ function filter_str_same(key, value) {
         </section>
 
         <section>
-          <div class="centering" style="font-size: 0.6em">
+          <div class="centering" style="font-size: 0.8em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 function generate_version(args=[]) {
   const url_params = Array.from(new URLSearchParams(window.location.search));
   var   specs;
 
   specs = parse_specs(args, {});
   specs = parse_specs(fix_url_params(url_params), specs);
-
-  for (const key of Object.keys(specs)) {
-    var op, val;
-    [op, val] = specs[key];
-    var data_key = `data-${key}`;
-    switch(op) {
-      case '=':  filter_str_same(data_key, val); break;
-      case '!=': filter_str_diff(data_key, spec.val, false); break;
-      case '@':  filter_num_at(data_key, val); break;
-      case '&lt;':  filter_num(data_key, val, is_lt); break;
-      case '&lt;=': filter_num(data_key, val, is_le); break;
-      case '&gt;':  filter_num(data_key, val, is_gt); break;
-      case '&gt;=': filter_num(data_key, val, is_ge); break;
-    }
-  }
-}
               </code></pre>
             </div>
+          </div>
+          <div style="
+                      border: 5px solid red;
+                      border-radius: 0.5em;
+                      position: absolute;
+                      top: 35%;
+                      height: 1em;
+                      left: 15%;
+                      width: 6.75em;
+                      ">
           </div>
           <aside class="notes">
             . . . ela aceita s&oacute; um argumento,
@@ -575,9 +576,9 @@ function generate_version(args=[]) {
         </section>
 
         <section>
-          <div class="centering" style="font-size: 1.1em">
+          <div class="centering" style="font-size: 1.0em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 const SPEC_REGEX = /^([a-zA-Z0-9-_]+)\s*([&lt;=&gt;!@]+)\s*(.+)$/;
 
 function parse_specs(args, so_far) {
@@ -591,11 +592,22 @@ function parse_specs(args, so_far) {
               </code></pre>
             </div>
           </div>
+          <div style="
+                      border: 5px solid red;
+                      border-radius: 1em;
+                      position: absolute;
+                      top: 49%;
+                      height: 1.5em;
+                      left: 11%;
+                      width: 17em;
+                      ">
+          </div>
           <aside class="notes">
             . . . uma fun&ccedil;&atilde;o que usa um regex,
             ou "express&atilde;o regular",
             para dividir a string
-            em uma chave, uma compara&ccedil;&atilde;o, e um valor.&nbsp;
+            em uma chave, uma compara&ccedil;&atilde;o, e um valor,
+            e os armazena num dicion&aacute;rio.&nbsp;
 
             <br><br>
 
@@ -611,29 +623,39 @@ function parse_specs(args, so_far) {
         </section>
 
         <section>
-          <div class="centering">
+          <div class="centering" style="font-size: 1.2em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 <span style="color: gray">switch(op) {
   case </span>'='<span style="color: gray">:  filter_str_same(data_key, val); break;
-  case </span>'!='<span style="color: gray">: filter_str_diff(data_key, spec.val, false); break;
-  case </span>'@'<span style="color: gray">:  filter_num_at(data_key, val); break;
+  case </span>'!='<span style="color: gray">: filter_str_diff(data_key, val); break;
   case </span>'&lt;'<span style="color: gray">:  filter_num(data_key, val, is_lt); break;
   case </span>'&lt;='<span style="color: gray">: filter_num(data_key, val, is_le); break;
   case </span>'&gt;'<span style="color: gray">:  filter_num(data_key, val, is_gt); break;
   case </span>'&gt;='<span style="color: gray">: filter_num(data_key, val, is_ge); break;
+  case </span>'@'<span style="color: gray">:  filter_num_at(data_key, val); break;
 }</span>
               </code></pre>
             </div>
           </div>
+          <div style="
+                      border: 5px solid red;
+                      border-radius: 1em;
+                      position: absolute;
+                      top: 25%;
+                      height: 6.5em;
+                      left: 15%;
+                      right: 74%;
+                      ">
+          </div>
           <aside class="notes">
             . . . igual, n&atilde;o igual,
-            uma coisa especial que explicarei mais tarde,
-            menos, menos ou igual, maior, e maior ou igual.&nbsp;
+            menos, menos ou igual, maior, maior ou igual, e
+            uma coisa especial que explicarei mais tarde.&nbsp;
             As compara&ccedil;&otilde;es de ordem s&atilde;o usadas
             s&oacute; para os valores num&eacute;ricos,
             e igual ou n&atilde;o-igual s&atilde;o para
-            os n&uacute;meros e os strings.&nbsp;
+            os n&uacute;meros <i>e</i> os strings.&nbsp;
             Por isso, voc&ecirc;s podem usar um filtro como
             "linguagem &eacute; portugu&ecirc;s"
             (ou specificamente portugu&ecirc;s-brasileiro)
@@ -647,17 +669,17 @@ function parse_specs(args, so_far) {
         </section>
 
         <section>
-          <div class="centering">
+          <div class="centering" style="font-size: 1.2em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 <span style="color: gray">switch(op) {
   case '=':  </span>filter_str_same(data_key, val);<span style="color: gray"> break;
-  case '!=': </span>filter_str_diff(data_key, spec.val, false);<span style="color: gray"> break;
-  case '@':  </span>filter_num_at(data_key, val);<span style="color: gray"> break;
+  case '!=': </span>filter_str_diff(data_key, val);<span style="color: gray"> break;
   case '&lt;':  </span>filter_num(data_key, val, is_lt);<span style="color: gray"> break;
   case '&lt;=': </span>filter_num(data_key, val, is_le);<span style="color: gray"> break;
   case '&gt;':  </span>filter_num(data_key, val, is_gt);<span style="color: gray"> break;
   case '&gt;=': </span>filter_num(data_key, val, is_ge);<span style="color: gray"> break;
+  case '@':  </span>filter_num_at(data_key, val);<span style="color: gray"> break;
 }</span>
               </code></pre>
             </div>
@@ -669,21 +691,21 @@ function parse_specs(args, so_far) {
 
             <br><br>
 
-            Cada chave fica uma chave num dicion&aacute;rio,
-            onde o valor &eacute; uma lista,
-            com a compara&ccedil;&atilde;o, e o valor, do filtro.&nbsp;
+            Cada chave se torna uma chave num dicion&aacute;rio,
+            cujo o valor &eacute; uma lista de duas coisas:
+            a compara&ccedil;&atilde;o, e o valor, do filtro.&nbsp;
             Por examplo, . . .
           </aside>
         </section>
 
         <section>
-          <div class="centering" style="font-size: 2em">
+          <div class="centering" style="font-size: 1.9em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 ["ling = pt", "tempo-min &lt;= 30"]
               </code></pre>
-              <center><span style="font-size: 0.5em">becomes</span></center>
-              <pre><code data-trim data-noescape>
+              <center><p><span style="font-size: 0.6em">se torna</span></p></center>
+              <pre><code data-trim data-noescape class="language-json">
 { "ling"     : ["=", "pt"],
   "tempo-min": ["&lt;=", 30] }
               </code></pre>
@@ -694,10 +716,10 @@ function parse_specs(args, so_far) {
             linguagem &eacute; portugu&ecirc;s
             e
             tempo-min &eacute; menos ou igual a trinta,
-            se torna ao dicion&aacute;rio
+            se torna o dicion&aacute;rio
             com as chaves linguagem e tempo-min,
             e os valores como isto.&nbsp;
-            (Observam que o trinta &eacute; um numero, sem aspas.)
+            (Observam que o trinta &eacute; um <i>numero</i>, sem aspas!)
 
             <br><br>
 
@@ -708,7 +730,7 @@ function parse_specs(args, so_far) {
         <section>
           <div class="centering" style="font-size: 1.3em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 <span style="color: gray">specs = parse_specs(args, {});</span>
 specs = parse_specs(fix_url_params(url_params),
                     specs);
@@ -727,7 +749,7 @@ specs = parse_specs(fix_url_params(url_params),
         <section>
           <div class="centering" style="font-size: 1.1em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 function fix_url_params(url_params) {
   const fixed_params = [];
   for (var [key, val] of url_params) {
@@ -757,7 +779,7 @@ function fix_url_params(url_params) {
         <section>
           <div class="centering" style="font-size: 1.3em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 <span style="color: gray">specs = parse_specs(args, {});</span>
 specs = parse_specs(fix_url_params(url_params),
                     specs);
@@ -786,24 +808,28 @@ specs = parse_specs(fix_url_params(url_params),
         <section>
           <div class="centering" style="font-size: 2em">
             <div>
-            <pre><code data-trim data-noescape>generate_version(["ling=es"]);</code></pre>
+            <pre><code data-trim data-noescape class="language-js">
+            generate_version(["ling=es"]);
+            </code></pre>
             </div>
           </div>
           <aside class="notes">
             se temos a chamada para Genaver assim,
             especificando a linguagem espanhol,
-            mas a URL e . . .
+            mas a URL &eacute; . . .
           </aside>
         </section>
 
         <section>
           <div class="centering" style="font-size: 3em">
             <div>
-            <pre><code data-trim data-noescape>talk.html?gv-ling=pt</code></pre>
+            <pre><code data-trim data-noescape class="language-html">
+              talk.html?gv-ling=pt
+            </code></pre>
             </div>
           </div>
           <aside class="notes">
-            assim, especificando a linguagem <i>portugu&ecirc;s</i>,
+            . . . assim, especificando a linguagem <i>portugu&ecirc;s</i>,
             vamos ver a apresenta&ccedil;&atilde;o
             em portugu&ecirc;s, n&atilde;o espanhol.
 
@@ -816,29 +842,70 @@ specs = parse_specs(fix_url_params(url_params),
         <section>
           <div class="centering">
             <div>
-              <pre style="font-size: 0.5em"><code data-trim data-noescape>
+              <pre style="font-size: 0.9em"><code data-trim data-noescape class="language-js">
 for (const key of Object.keys(specs)) {<span style="color: gray">
   var op, val;
   [op, val] = specs[key];
   var data_key = `data-${key}`;
   switch(op) {
-    case '=':  filter_str_same(data_key, val); break;
-    case '!=': filter_str_diff(data_key, spec.val, false); break;
-    case '@':  filter_num_at(data_key, val); break;
-    case '&lt;':  filter_num(data_key, val, is_lt); break;
-    case '&lt;=': filter_num(data_key, val, is_le); break;
-    case '&gt;':  filter_num(data_key, val, is_gt); break;
-    case '&gt;=': filter_num(data_key, val, is_ge); break;
+    . . .
   }</span>
 }
               </code></pre>
             </div>
           </div>
+          <div style="
+                      border: 5px solid red;
+                      border-radius: 0.5em;
+                      position: absolute;
+                      top: 15%;
+                      height: 1.25em;
+                      left: 3%;
+                      width: 20em;
+                      ">
+          </div>
           <aside class="notes">
             . . .  os aplica ao documento, filtro por filtro.&nbsp;
-            Para cada um, ela precede a chave com a palavra "data",
+            Para cada um, . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="centering">
+            <div>
+              <pre style="font-size: 0.9em"><code data-trim data-noescape class="language-js">
+var op, val;
+[op, val] = specs[key];
+var data_key = `data-${key}`;
+switch(op) {
+  . . .
+}
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . .  ela precede a chave com a palavra "data",
             como se faz para atributos personalizados,
-            e faz algo que depende da compara&ccedil;&atilde;o.
+            e faz . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="centering">
+            <div>
+              <pre style="font-size: 0.7em"><code data-trim data-noescape class="language-js">
+  case '=':  filter_str_same(data_key, val); break;
+  case '!=': filter_str_diff(data_key, val); break;
+  case '&lt;':  filter_num(data_key, val, is_lt); break;
+  case '&lt;=': filter_num(data_key, val, is_le); break;
+  case '&gt;':  filter_num(data_key, val, is_gt); break;
+  case '&gt;=': filter_num(data_key, val, is_ge); break;
+  case '@':  filter_num_at(data_key, val); break;
+              </code></pre>
+            </div>
+          </div>
+          <aside class="notes">
+            . . . algo que depende da compara&ccedil;&atilde;o.
 
             <br><br>
 
@@ -850,7 +917,7 @@ for (const key of Object.keys(specs)) {<span style="color: gray">
         <section>
           <div class="centering" style="font-size: 1.2em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 function filter_str_diff(key, value) {
   const all =
     document.querySelectorAll(`[${key}="${value}"]`);
@@ -859,8 +926,18 @@ function filter_str_diff(key, value) {
               </code></pre>
             </div>
           </div>
+          <div style="
+                      border: 5px solid red;
+                      border-radius: 1em;
+                      position: absolute;
+                      top: 46%;
+                      height: .8em;
+                      left: 9%;
+                      width: 20em;
+                      ">
+          </div>
           <aside class="notes">
-            ela usa querySelectorAll para encontrar todos os elementos
+            . . . ela usa querySelectorAll para encontrar todos os elementos
             com esse valor para esse atributo, e os remove.&nbsp;
 
             <br><br>
@@ -872,7 +949,7 @@ function filter_str_diff(key, value) {
         <section>
           <div class="centering" style="font-size: 1.2em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 function filter_str_same(key, value) {
   const all = document.querySelectorAll(`[${key}]`);
   for (elt of all) {
@@ -893,14 +970,14 @@ function filter_str_same(key, value) {
 
             <br><br>
 
-            Para as compara&ccedil;&otilde;es de ordem, . . .
+            Para . . .
           </aside>
         </section>
 
         <section>
           <div class="centering" style="font-size: 1.2em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 case '&lt;':  filter_num(data_key, val, is_lt); break;
 case '&lt;=': filter_num(data_key, val, is_le); break;
 case '&gt;':  filter_num(data_key, val, is_gt); break;
@@ -909,15 +986,16 @@ case '&gt;=': filter_num(data_key, val, is_ge); break;
             </div>
           </div>
           <aside class="notes">
-            . . .  &eacute; um pouco mais complexo que isso,
-          porque precisa . . .
+            . . .  as compara&ccedil;&otilde;es de ordem,
+            &eacute; um pouco mais complexo que isso,
+            porque precisa . . .
           </aside>
         </section>
 
         <section>
-          <div class="centering" style="font-size: 1.1em">
+          <div class="centering" style="font-size: 1em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 function filter_num(key, value, comp_fn) {
   const limit = parseInt(value);
   const all = document.querySelectorAll(`[${key}]`);
@@ -934,8 +1012,48 @@ function filter_num(key, value, comp_fn) {
             . . . converter os atributos de strings em n&uacute;meros,
             e verificar seus rela&ccedil;&otilde;es ao argumento.&nbsp;
             Ela faz isso por encontrar todos os elementos com o atributo,
-            e para cada um,
-            usar uma fun&ccedil;&atilde;o de compara&ccedil;&atilde;o
+            e para cada um, usar uma . . .
+          </aside>
+        </section>
+
+        <section>
+          <div class="centering" style="font-size: 1em">
+            <div>
+              <pre><code data-trim data-noescape class="language-js">
+function filter_num(key, value, comp_fn) {
+  const limit = parseInt(value);
+  const all = document.querySelectorAll(`[${key}]`);
+  for (elt of all) {
+    if (! comp_fn(parseInt(elt.getAttribute(key)), limit)) {
+      elt.style.remove();
+    }
+  }
+}
+              </code></pre>
+            </div>
+          </div>
+          <div style="
+                      border: 5px solid red;
+                      border-radius: 0.5em;
+                      position: absolute;
+                      top: 25%;
+                      height: 1em;
+                      left: 51%;
+                      width: 3em;
+                      ">
+          </div>
+          <div style="
+                      border: 5px solid red;
+                      border-radius: 0.5em;
+                      position: absolute;
+                      top: 45%;
+                      height: 1em;
+                      left: 19%;
+                      width: 3em;
+                      ">
+          </div>
+          <aside class="notes">
+            . . . fun&ccedil;&atilde;o de compara&ccedil;&atilde;o
             para verificar se
             a rela&ccedil;&atilde;o desejado &eacute; verdadeira,
             e se <i>n&atilde;o</i>, remove o elemento.&nbsp;
@@ -946,7 +1064,7 @@ function filter_num(key, value, comp_fn) {
         <section>
           <div class="centering" style="font-size: 1.4em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 function is_ge(x, limit) { return x &gt;= limit }
 function is_gt(x, limit) { return x &gt;  limit }
 function is_le(x, limit) { return x &lt;= limit }
@@ -998,9 +1116,9 @@ function filter_num_at(key, value) {
         </section>
 
         <section>
-          <div class="centering" style="font-size: 1.5em">
+          <div class="centering" style="font-size: 1.4em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-html">
 &lt;p data-tempo-max="19"&gt;
   Explica&ccedil;&atilde;o curta.
 &lt;/p&gt;
@@ -1027,9 +1145,9 @@ function filter_num_at(key, value) {
         </section>
 
         <section>
-          <div class="centering" style="font-size: 1.6em">
+          <div class="centering" style="font-size: 1.5em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-js">
 function filter_num_at(key, value) {
   filter_num(`${key}-min`, value, is_le);
   filter_num(`${key}-max`, value, is_ge);
@@ -1051,9 +1169,11 @@ function filter_num_at(key, value) {
         </section>
 
         <section>
-          <div class="centering" style="font-size: 1.7em">
+          <div class="centering" style="font-size: 3em">
             <div>
-              <code data-trim data-noescape>generate_version([]);</code>
+              <pre><code data-trim data-noescape class="language-js">
+                generate_version([]);
+              </code></pre>
             </div>
           </div>
           <aside class="notes">
@@ -1068,7 +1188,8 @@ function filter_num_at(key, value) {
           <div class="centering">
             <div>
               <pre><code data-trim data-noescape
-                         style="font-size: 1.7em; line-height: 1.1em">
+                         style="font-size: 2em; line-height: 1.1em"
+                         class="language-html">
 &lt;p data-ling="en"&gt;
   This is in English.
 &lt;/p&gt;
@@ -1120,6 +1241,9 @@ function filter_num_at(key, value) {
 
             Mas agora, vamos mudar a URL,
             por adicionar o argumento gv-ling=en.&nbsp;
+            (O "gv-" &eacute; como n&oacute;s dizemos que
+            este argumento &eacute; para Genaver,
+            n&aacute;o algum outro programa.)&nbsp;
             Se agora n&oacute;s recarregarmos a p&aacute;gina,
             agora vemos s&oacute; a vers&atilde;o em ingles.&nbsp;
             E podemos fazer a mesma coisa com franc&ecirc;s
@@ -1133,37 +1257,35 @@ function filter_num_at(key, value) {
         </section>
 
         <section>
-          <div class="centering" style="font-size: 1.6em">
+          <div class="centering" style="font-size: 1.8em">
             <div>
-            <pre><code data-trim data-noescape>
+            <pre><code data-trim data-noescape class="language-html">
 &lt;p data-ling-prog="c"&gt;
-  printf("Blah.\n")
+  printf("Genaver!\n");
 &lt;/p&gt;
 &lt;p data-ling-prog="elixir"&gt;
-  IO.puts("Blah.")
+  IO.puts("Genaver!")
 &lt;/p&gt;
 &lt;p data-ling-prog="ruby"&gt;
-  puts "Blah."
+  puts "Genaver!"
 &lt;/p&gt;
             </code></pre>
           </div>
           </div>
           <aside class="notes">
-            E aqui est&aacute; o c&oacute;digo
+            . . . aqui est&aacute; o c&oacute;digo
             do <i>pr&oacute;ximo</i> slide.&nbsp;
             Vamos-l&aacute; e ver o que aparecer&aacute;!
           </aside>
         </section>
 
         <section>
-          <div class="centering" style="font-size: 3em">
-          <div>
-            <pre><code data-trim data-noescape>
-<span data-ling-prog="c">printf("Blah.\n")</span>
-<span data-ling-prog="elixir">IO.puts("Blah.")</span>
-<span data-ling-prog="ruby">puts "Blah."</span>
-            </code></pre>
-          </div>
+          <div class="centering" style="font-size: 2.5em">
+            <div>
+              <pre><code data-trim data-noescape class="language-c"><p data-ling-prog="c">printf("Genaver!\n");</p></code></pre>
+              <pre><code data-trim data-noescape class="language-elixir"><p data-ling-prog="elixir">IO.puts("Genaver!")</p></code></pre>
+              <pre><code data-trim data-noescape class="language-ruby"><p data-ling-prog="ruby">puts "Genaver!"</p></code></pre>
+            </div>
           </div>
           <aside class="notes">
             De novo, vemos tudo, porque
@@ -1180,12 +1302,10 @@ function filter_num_at(key, value) {
           </aside>
         </section>
 
-        <!-- LEFT OFF CODE COLORING / HIGHLIGHTING HERE! -->
-
         <section>
-          <div class="centering" style="font-size: 1.4em">
+          <div class="centering" style="font-size: 1.6em">
             <div>
-              <pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape class="language-html">
 &lt;p data-tempo-max="19"&gt;
   Explica&ccedil;&atilde;o curta.
 &lt;/p&gt;
@@ -1218,7 +1338,7 @@ function filter_num_at(key, value) {
 
         <section>
           <div class="centering">
-            <div style="font-size: 2em">
+            <div style="font-size: 1.9em">
               <p data-tempo-max="19">Explica&ccedil;&atilde;o curta.</p>
               <p data-tempo-min="20" data-tempo-max="29">Explica&ccedil;&atilde;o m&eacute;dia.</p>
               <p data-tempo-min="30">Explica&ccedil;&atilde;o longa.</p>
@@ -1237,24 +1357,24 @@ function filter_num_at(key, value) {
             e tempo-max maior ou igual a quinze,
             e isso d&aacute; certo.&nbsp;
             Mas, &eacute; um pouco chato,
-            precisar dar ambos o tempos
+            precisar dar ambos os tempos
             m&iacute;nimo e m&aacute;ximo,
             quando s&atilde;o geralmente o mesmo n&uacute;mero,
             n&eacute;?&nbsp;
             Podemos dizer, em vez de desses <i>dois</i> argumentos,
             tempo <i>arroba</i> quinze,
             e Genaver interpreta isso como o min e o max, assim.&nbsp;
-            E a vinte, vemos a explica&ccedil;&atilde;o m&eacute;dia,
+            E mesmo a dezenove.&nbsp;
+            Mas a vinte, vemos  agora a explica&ccedil;&atilde;o m&eacute;dia,
             assim de novo com vinte-nove,
             e a trinta (ou mais),
             vemos a explica&ccedil;&atilde;o longa.
 
             <br><br>
 
-            Podemos ainda usar as compara&ccedil;&otilde;es de ordem
+            Podemos usar as compara&ccedil;&otilde;es de ordem
             para outros prop&oacute;sitos,
-            mas eu pessoalmente n&atilde;o tenho motivos para us&aacute;-los,
-            ent&atilde;o n&atilde;o vou demonstr&aacute;-los.
+            mas eu pessoalmente n&atilde;o tenho nenhum.
 
             <br><br>
 
@@ -1263,23 +1383,27 @@ function filter_num_at(key, value) {
         </section>
 
         <section>
-          <div class="centering" style="font-size: 1.1em">
+          <div class="centering">
             <div>
-              <pre><code data-trim data-noescape>
+              <div class="centering" style="font-size: 1.5em">
+                <div>
+                  <pre><code data-trim data-noescape class="language-js">
 generate_version(["ling-humana = pt",
                   "ling-prog &nbsp; = elixir",
                   "tempo &nbsp; &nbsp; &nbsp; @ 30"])
-              </code></pre>
+                  </code></pre>
+                </div>
+              </div>
 
-              <b><big><center>/</center></big></b>
+              <p><b><big><center>ou</center></big></b></p>
 
-              <pre><code data-trim data-noescape>
-talk.html?gv-ling-humana=pt&gv-ling-prog=elixir&gv-tempo@30
-              </code></pre>
+              <code data-trim data-noescape style="font-size: 0.6em">
+                talk.html?gv-ling-humana=pt&gv-ling-prog=elixir&gv-tempo@30
+              </code>
             </div>
           </div>
           <aside class="notes">
-            . . . com a minha gambiarra chamada Genaver,
+            . . . com a minha gambiarra chamada de Genaver,
             eu posso alcan&ccedil;ar meu objetivo,
             de manter <i>uma</i> "vers&atilde;o prim&aacute;ria"
             de uma apresenta&ccedil;&atilde;o,
@@ -1346,7 +1470,7 @@ talk.html?gv-ling-humana=pt&gv-ling-prog=elixir&gv-tempo@30
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
       });
-      // Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
+      Reveal.configure({ pdfMaxPagesPerSlide: 1, showNotes: 'separate-page' });
       generate_version([]);
     </script>
   </body>
