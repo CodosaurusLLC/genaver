@@ -100,6 +100,11 @@ function filter_str_same(key, value) {
   for (elt of all) {
     if (elt.getAttribute(key) != value) elt.remove();
   }
+  const not_key = key.replace('data-', 'data-not-if-')
+  const not = document.querySelectorAll(`[${not_key}]`);
+  for (elt of not) {
+    if (elt.getAttribute(not_key) === value) elt.remove();
+  }
 }
 
 function sub_vars(key, value) {

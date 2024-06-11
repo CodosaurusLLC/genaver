@@ -147,6 +147,9 @@ digits,
 and hyphens.&nbsp;
 For filters, the tags _must not_ start with `var-`,
 as that is how to designate a _constant_ option.&nbsp;
+They also _should not_ start with `not-if`,
+as that is used to _invert_ string match filtering
+(as explained later).&nbsp;
 For filters, the comparator can be `=`, `!=`, `<`, `<=`, `>`, or `>=`,
 while for constants, it must be `=`.&nbsp;
 The value may consist of any characters.
@@ -207,6 +210,27 @@ you can tag them with
 `data-code-lang="elixir"`,
 and have them be the ones shown, by using
 `code-lang=elixir`.
+
+Conversely, you can tag elements with
+`data-not-if-$KEY="$VALUE"`,
+such as `data-not-if-human-language="portuguese"`,
+to _hide_ elements if the value _does_ match what was given,
+such as if the human-language _is_ Portuguese.&nbsp;
+To give a concrete example:
+
+I give presentations in many different countries,
+and always do a brief introduction.&nbsp;
+If the local language is not English,
+I do the intro in the local language,
+with slides for each few words,
+with the words in the local language above,
+a relevant picture in the middle,
+and an English translation below.&nbsp;
+So, each of those slide elements
+is tagged `data-not-if-language="english"`.&nbsp;
+So, if I tell Genaver that this presentation is in English,
+those slides are not shown.
+
 
 #### Constants
 
